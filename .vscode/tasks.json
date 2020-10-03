@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/IvyBot/DiscordBot/DiscordBot.csproj"
+                "${workspaceFolder}/IvyBot/IvyBot/IvyBot.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
