@@ -1,0 +1,32 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore IvyBot/IvyBot/IvyBot.csproj
+    - name: Build
+      run: dotnet build IvyBot/IvyBot/IvyBot.csproj --configuration Release --no-restore
+    - name: Test
+      run: dotnet test IvyBot/IvyBot/IvyBot.csproj --no-restore --verbosity normal
+    - name: Publish
+      run: dotnet publish IvyBot/IvyBot/IvyBot.csproj
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ivy-bot
+        path: /home/runner/work/ivy-bot/ivy-bot/IvyBot/IvyBot/bin/Debug/netcoreapp2.1/publish/
