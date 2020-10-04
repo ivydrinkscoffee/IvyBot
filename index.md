@@ -1,7 +1,7 @@
 # invite
 click [here](https://discord.com/api/oauth2/authorize?client_id=719933579865489499&permissions=8&scope=bot) to add the bot to a server of your choice
 # building
-this can be built on windows, linux, and macos using the [.net core sdk](https://dotnet.microsoft.com/download/dotnet-core) or can be built directly through [visual studio](https://visualstudio.microsoft.com) or [visual studio code](https://code.visualstudio.com)
+can be built on windows, linux, and macos using the [.net core sdk](https://dotnet.microsoft.com/download/dotnet-core) or can be built directly through [visual studio](https://visualstudio.microsoft.com) or [visual studio code](https://code.visualstudio.com)
 # running
 edit [this line](https://github.com/Ivy-Wusky/ivy-bot/blob/0571bdf61c84fe39e898917ed8f64a2d2b3c7120/IvyBot/IvyBot/IvyBotClient.cs#L45) as follows
 
