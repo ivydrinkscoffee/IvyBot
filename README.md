@@ -30,6 +30,8 @@ await _lavaSocketClient.StartAsync(_client, new Victoria.Configuration {
 ```
 
 make sure to pass the **same** configuration in both and if you are running your **lavalink** instance on [heroku](https://www.heroku.com) the port will always be **80** regardless of the port you set
+# future plans
+customizable configuration most likely in the **json** or **xml** format which would mean not having to edit source files at all
 # credits
 [discord.net](https://github.com/discord-net/Discord.Net)
 
