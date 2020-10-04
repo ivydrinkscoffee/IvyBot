@@ -1,13 +1,15 @@
 # invite
 click [here](https://discord.com/api/oauth2/authorize?client_id=719933579865489499&permissions=8&scope=bot) to add the bot to a server of your choice
-# running yourself
+# building
+this can be built on windows, linux, and macos using the [.net core sdk](https://dotnet.microsoft.com/download/dotnet-core) or can be built directly through [visual studio](https://visualstudio.microsoft.com) or [visual studio code](https://code.visualstudio.com)
+# running
 edit [this line](https://github.com/Ivy-Wusky/ivy-bot/blob/0571bdf61c84fe39e898917ed8f64a2d2b3c7120/IvyBot/IvyBot/IvyBotClient.cs#L45) as follows
 
 ```cs
 await _client.LoginAsync(TokenType.Bot, "replace with your bot token");
 ```
 
-and if you would like music as well you will need to edit the configurations [here](https://github.com/Ivy-Wusky/ivy-bot/blob/0571bdf61c84fe39e898917ed8f64a2d2b3c7120/IvyBot/IvyBot/Services/MusicService.cs#L20) and [here](https://github.com/Ivy-Wusky/ivy-bot/blob/0571bdf61c84fe39e898917ed8f64a2d2b3c7120/IvyBot/IvyBot/Services/MusicService.cs#L137) to fit your currently running lavalink instance as follows
+and if you would like **music** functionality you will need to edit the configurations [here](https://github.com/Ivy-Wusky/ivy-bot/blob/0571bdf61c84fe39e898917ed8f64a2d2b3c7120/IvyBot/IvyBot/Services/MusicService.cs#L20) and [here](https://github.com/Ivy-Wusky/ivy-bot/blob/0571bdf61c84fe39e898917ed8f64a2d2b3c7120/IvyBot/IvyBot/Services/MusicService.cs#L137) to fit your currently running **lavalink** instance as follows
 
 ```cs
 _lavaRestClient = new LavaRestClient(new Victoria.Configuration {
@@ -25,7 +27,7 @@ Password = "replace with the set password"
 });
 ```
 
-make sure to pass the same configuration in both and if you are running your lavalink instance on heroku the port will always be 80 regardless of the port you set
+make sure to pass the **same** configuration in both and if you are running your lavalink instance on **heroku** the port will always be **80** regardless of the port you set
 # credits
 [discord.net](https://github.com/discord-net/Discord.Net)
 
