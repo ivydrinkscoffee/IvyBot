@@ -1,5 +1,5 @@
 # invite
-click [here](https://discord.com/api/oauth2/authorize?client_id=719933579865489499&permissions=8&scope=bot) to add the bot to a server of your choice
+click [here](https://discord.com/api/oauth2/authorize?client_id=719933579865489499&permissions=8&scope=bot) to add the **bot** to a **server** of your choice
 # building
 can be built on windows, linux, and macos using the [.net core sdk](https://dotnet.microsoft.com/download/dotnet-core) or can be built directly through [visual studio](https://visualstudio.microsoft.com) or [visual studio code](https://code.visualstudio.com)
 # running
@@ -27,7 +27,7 @@ Password = "replace with the set password"
 });
 ```
 
-make sure to pass the **same** configuration in both and if you are running your lavalink instance on **heroku** the port will always be **80** regardless of the port you set
+make sure to pass the **same** configuration in both and if you are running your **lavalink** instance on [heroku](https://www.heroku.com) the port will always be **80** regardless of the port you set
 # credits
 [discord.net](https://github.com/discord-net/Discord.Net)
 
