@@ -6,3 +6,5 @@ a multi-purpose discord bot written in c#
 [discord.net](https://github.com/discord-net/Discord.Net)
 
 [victoria](https://github.com/Yucked/Victoria)
+
+[newtonsoft.json](https://github.com/JamesNK/Newtonsoft.Json)
