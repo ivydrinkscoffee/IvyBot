@@ -16,7 +16,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendFileAsync(stream, "5.3.0public.pchtxt");
         }
 
-        [Command("color", RunMode = RunMode.Sync)]
+        [Command("color", RunMode = RunMode.Async)]
         [Summary("Sends an image of the color you have requested in hex")]
         public async Task ColorViewer(string hex)
         {
