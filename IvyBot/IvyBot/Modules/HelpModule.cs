@@ -22,7 +22,8 @@ namespace IvyBot.Modules
             string prefix = ".";
             var builder = new EmbedBuilder()
             {
-                Color = Color.Blue
+                Color = Color.Blue,
+                Title = "Commands"
             };
             
             foreach (var module in _service.Modules)

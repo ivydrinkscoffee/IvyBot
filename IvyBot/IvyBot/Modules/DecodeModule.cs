@@ -10,7 +10,7 @@ namespace IvyBot.Modules
     public class DecodeModule : ModuleBase<SocketCommandContext>
     {
         [Command("base64decode", RunMode = RunMode.Sync)]
-        [Summary("Decode Base64")]
+        [Summary("Decode the entered Base64")]
         public async Task DecodeBase64(string base64)
         {
             string json = new WebClient().DownloadString("https://some-random-api.ml/base64?decode=" + base64);
@@ -21,7 +21,7 @@ namespace IvyBot.Modules
         }
 
         [Command("base64encode", RunMode = RunMode.Sync)]
-        [Summary("Encode Base64")]
+        [Summary("Encode the entered text into Base64")]
         public async Task EncodeBase64(string text)
         {
             string json = new WebClient().DownloadString("https://some-random-api.ml/base64?encode=" + text.Replace(" ", "%20"));
@@ -32,7 +32,7 @@ namespace IvyBot.Modules
         }
 
         [Command("binarydecode", RunMode = RunMode.Sync)]
-        [Summary("Decode Binary")]
+        [Summary("Decode the entered Binary")]
         public async Task DecodeBinary(string binary)
         {
             string json = new WebClient().DownloadString("https://some-random-api.ml/binary?decode=" + binary);
@@ -43,7 +43,7 @@ namespace IvyBot.Modules
         }
 
         [Command("binaryencode", RunMode = RunMode.Sync)]
-        [Summary("Encode Binary")]
+        [Summary("Encode the entered text into Binary")]
         public async Task EncodeBinary(string text)
         {
             string json = new WebClient().DownloadString("https://some-random-api.ml/binary?text=" + text.Replace(" ", "%20"));

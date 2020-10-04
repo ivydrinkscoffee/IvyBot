@@ -18,9 +18,9 @@ namespace IvyBot.Services
         {
             _client = client;
             _lavaRestClient = new LavaRestClient(new Victoria.Configuration {
-                Host = "ivy-bot-lavalink.herokuapp.com",
-                Port = 80,
-                Password = "supersecretivypassword"
+                Host = "youarenotgettinglavalink",
+                Port = 69,
+                Password = "wowyoureallythoughtyouweregettingmypasswordaswell"
             });
             _lavaSocketClient = lavaSocketClient;
             _logService = logService;
@@ -135,9 +135,9 @@ namespace IvyBot.Services
         public async Task ClientReadyAsync()
         {
             await _lavaSocketClient.StartAsync(_client, new Victoria.Configuration {
-                Host = "ivy-bot-lavalink.herokuapp.com",
-                Port = 80,
-                Password = "supersecretivypassword"
+                Host = "youarenotgettinglavalink",
+                Port = 69,
+                Password = "wowyoureallythoughtyouweregettingmypasswordaswell"
             });
         }
 
