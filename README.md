@@ -23,9 +23,9 @@ _lavaRestClient = new LavaRestClient(new Victoria.Configuration {
 
 ```cs
 await _lavaSocketClient.StartAsync(_client, new Victoria.Configuration {
-Host = "replace with the set address",
-Port = replace with the set port,
-Password = "replace with the set password"
+    Host = "replace with the set address",
+    Port = replace with the set port,
+    Password = "replace with the set password"
 });
 ```
 
