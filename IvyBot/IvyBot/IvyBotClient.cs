@@ -92,7 +92,7 @@ namespace IvyBot
             builder.AddField("Before", $"{message}", true);
             builder.AddField("After", $"{after}", true);
             builder.WithCurrentTimestamp();
-            builder.WithFooter("IvyBot is coded and maintained by Ivy#9804 in Discord.NET");
+            builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
             builder.WithColor(Color.Blue);
 
             await channel.SendMessageAsync("", false, builder.Build());
