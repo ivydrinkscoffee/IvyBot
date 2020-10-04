@@ -28,5 +28,5 @@ jobs:
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: IvyBot
+        name: ivy-bot
         path: /home/runner/work/ivy-bot/ivy-bot/IvyBot/IvyBot/bin/Debug/netcoreapp2.1/publish/
