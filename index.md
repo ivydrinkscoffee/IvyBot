@@ -6,10 +6,10 @@ can be built on windows, linux, and macos using the [.net core sdk](https://dotn
 clone the repository with `git clone https://github.com/Ivy-Wusky/ivy-bot.git` then rename **App.config.example** to **App.config** and edit it accordingly to your **discord** and **lavalink** environment
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>  
+<?xml version="1.0" encoding="utf-8"?>  
 <configuration>  
     <startup>   
-        <supportedRuntime version="v4.0" sku="netcoreapp2.1" />  
+        <supportedRuntime version="v4.0" sku="netcoreapp2.1"/>  
     </startup>  
   <appSettings>  
     <add key="Token" value="replace with your bot token"/>
