@@ -5,7 +5,7 @@ click [here](https://discord.com/api/oauth2/authorize?client_id=7199335798654894
 # building
 can be built on windows, linux, and macos using the [.net core sdk](https://dotnet.microsoft.com/download/dotnet-core) or can be built **directly** through [visual studio](https://visualstudio.microsoft.com) or [visual studio code](https://code.visualstudio.com)
 # running and hosting
-clone this repository with `git clone https://github.com/Ivy-Wusky/ivy-bot.git` then rename the **App.config.example** file to **App.config** and fill it accordingly to your **discord** and **lavalink** environment
+clone the repository with `git clone https://github.com/Ivy-Wusky/ivy-bot.git` then rename **App.config.example** to **App.config** and edit it accordingly to your **discord** and **lavalink** environment
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>  
