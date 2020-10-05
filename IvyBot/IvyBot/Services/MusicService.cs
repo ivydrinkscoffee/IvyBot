@@ -18,9 +18,9 @@ namespace IvyBot.Services
         {
             _client = client;
             _lavaRestClient = new LavaRestClient(new Victoria.Configuration {
-                Host = "youarenotgettinglavalink",
+                Host = "replace with the set address",
                 Port = 69,
-                Password = "wowyoureallythoughtyouweregettingmypasswordaswell"
+                Password = "replace with the set password"
             });
             _lavaSocketClient = lavaSocketClient;
             _logService = logService;
@@ -135,9 +135,9 @@ namespace IvyBot.Services
         public async Task ClientReadyAsync()
         {
             await _lavaSocketClient.StartAsync(_client, new Victoria.Configuration {
-                Host = "youarenotgettinglavalink",
+                Host = "replace with the set address",
                 Port = 69,
-                Password = "wowyoureallythoughtyouweregettingmypasswordaswell"
+                Password = "replace with the set password"
             });
         }
 
