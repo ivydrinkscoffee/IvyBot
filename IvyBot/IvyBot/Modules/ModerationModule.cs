@@ -14,8 +14,8 @@ namespace IvyBot.Modules
         [Summary("Kicks the specified user")]
         public async Task KickAsync(IGuildUser user)
         {
-            var Check = new Emoji("✅");
-            await Context.Message.AddReactionAsync(Check);
+            var check = new Emoji("✅");
+            await Context.Message.AddReactionAsync(check);
             await user.KickAsync();
         }
 
@@ -25,8 +25,8 @@ namespace IvyBot.Modules
         [Summary("Kicks users who have not been active for the amount of days specified")]
         public Task PruneAsync(int days)
         {
-            var Check = new Emoji("✅");
-            Context.Message.AddReactionAsync(Check);
+            var check = new Emoji("✅");
+            Context.Message.AddReactionAsync(check);
             return Context.Guild.PruneUsersAsync(days);
         }
 
@@ -36,8 +36,8 @@ namespace IvyBot.Modules
         [Summary("Bans the specified user")]
         public Task BanAsync(IGuildUser user)
         {
-            var Check = new Emoji("✅");
-            Context.Message.AddReactionAsync(Check);
+            var check = new Emoji("✅");
+            Context.Message.AddReactionAsync(check);
             return Context.Guild.AddBanAsync(user);
         }
 
@@ -47,17 +47,17 @@ namespace IvyBot.Modules
         [Summary("Unbans the specified user")]
         public Task UnbanAsync(ulong userId)
         {
-            var Check = new Emoji("✅");
-            Context.Message.AddReactionAsync(Check);
+            var check = new Emoji("✅");
+            Context.Message.AddReactionAsync(check);
             return Context.Guild.RemoveBanAsync(userId);
         }
 
         [Command("bam", RunMode = RunMode.Async)]
-        [Summary("B̴̥̆̍̎̄̉͒͂̐͐́͐͘̕͝ầ̸̠̟̞͚̞̥̟͊͒̍̓̒̉̀͘̕n̴̛̪̓̎̐s̷͓͉̫̱̳̹͇̟̜̜̄͛̒̿͌̓̔͑̽́̕̚ ̶̘̥̭̜́̇t̶͚͚̀̋́̚͠h̸͇͚̭͌́̂͑͌͒̅̏͌͐̏͗̊e̸̡͈̲̫̯͑̄͊̾̎͗̀̕̚͝ ̸̜̱́̏s̶̛̛̫̻̣̞͂̂̆̐̎̊̓͛͊̈́͑̐̕̕͠p̸̡̩͇͙̤̺͓̯͇̻͖͓̠͔̾̿̋̄͐̌̓̇̽̿̓͊́̽̊̅e̷̜̹̎̃̊̆̓̈́͂̀̿̈́͋͑̂̒̚ć̵͓̣̃̀͊̾͋͑̀̍̔͘î̶̡̛̼̞̖̀̑̏f̸̛̝͛̆̔͌̂̈́̆͗͂̂͠i̸̢̩͕̬̻̖̦̝̺̒̊̌̿̃̃̾̋́̽̈́̅̄̒̀͠ë̴̬̹͌͗̎̈͠d̶͖͂͋̏̾̀͌̏̆́̔̌́͘ ̶̡̨̠̙̹̙̥͚̱̙̹͇́̈́̔͗̿́͘̕͜u̸̧̼̣͖͔͉̰̰̳͍͈̯̗̮̬̩̥̔̍́͒̌͑͛͋s̶̪̜̥̖͈̜̠̻͓̦͖̤̆ę̴͙̪̝̞̮̉̏̆̇͐͂̆͑̔̓̃͌͘͜ͅr̷̛̞̘̗̲͈̙̾̏͊́̌̕̕")]
+        [Summary("B̴̥̆̍̎̄̉͒͂̐͐́͐͘̕͝ầ̸̠̟̞͚̞̥̟͊͒̍̓̒̉̀͘̕n̴̛̪̓̎̐s̷͓͉̫̱̳̹͇̟̜̜̄͛̒̿͌̓̔͑̽́̕̚ ̶̘̥̭̜́̇t̶͚͚̀̋́̚͠h̸͇͚̭͌́̂͑͌͒̅̏͌͐̏͗̊e̸̡͈̲̫̯͑̄͊̾̎͗̀̕̚͝ ̸̜̱́̏s̶̛̛̫̻̣̞͂̂̆̐̎̊̓͛͊̈́͑̐̕̕͠p̸̡̩͇͙̤̺͓̯͇̻͖͓̠͔̾̿̋̄͐̌̓̇̽̿̓͊́̽̊̅e̷̜̹̎̃̊̆̓̈́͂̀̿̈́͋͑̂̒̚ć̵͓̣̃̀͊̾͋͑̀̍̔͘î̶̡̛̼̞̖̀̑̏f̸̛̝͛̆̔͌̂̈́̆͗͂̂͠i̸̢̩͕̬̻̖̦̝̺̒̊̌̿̃̃̾̋́̽̈́̅̄̒̀͠ë̴̬̹͌͗̎̈͠d̶͖͂͋̏̾̀͌̏̆́̔̌́͘ ̶̡̨̠̙̹̙̥͚̱̙̹͇́̈́̔͗̿́͘̕͜u̸̧̼̣͖͔͉̰̰̳͍͈̯̗̮̬̩̥̔̍́͒̌͑͛͋s̶̪̜̥̖͈̜̠̻͓̦͖̤̆ę̴͙̪̝̞̮̉̏̆̇͐͂̆͑̔̓̃͌͘͜ͅr̷̛̞̘̗̲͈̙̾̏͊́̌̕̕")]
         public async Task BamAsync(SocketUser user = null)
         {
             var userInfo = user ?? Context.Client.CurrentUser;
-            await ReplyAsync($"**{userInfo.Mention}** i̶̧̫͙̼̤̥͑͜ṥ̸͕̳͉̈́̍̀ ̴̧̧̛̣̥̞͔̥̞̞͕͕̠̝̲̖̟̓͐͂̑̌̎̚͝ṇ̵̝̬̥̠̮̩͚̗͍͇͇͊̏̈́o̸̲̼͕͓̼̜̦͍͔̙͕͈̊̈́̅̋̆͒̅͌̅́̚͝͝͝͝ͅw̷͕͚͍̮̹̪̮͖̞̠̼͓̯̫̓͜ ̶̧̫̣̟̼̻͚̞̹̯̉̃̑͑b̷͎̞̹̘̣̫͖͔̰̘͕̪̲̭͓͕͌͆ͅä̶͉͖͖̥̮̭͔̖̒̊̊͆̋̌̿̃̿͂̍͋̍͆̍n̶̥̓̒̏͑͂̉͋̃͛̐͋͝͠͝n̵̩̺͖̦̥̆͆̆̑̄͆̔̃̀̃̕͝ē̵͙̬͚̝̭͑̃̓̀́̾͠ḋ̵̡͎̖̻͕͖̮̜̖̗̠͙͔̻̰̰̮̓͂̈̇̉̓̚");
+            await ReplyAsync($"**{userInfo.Mention}** i̶̧̫͙̼̤̥͑͜ṥ̸͕̳͉̈́̍̀ ̴̧̧̛̣̥̞͔̥̞̞͕͕̠̝̲̖̟̓͐͂̑̌̎̚͝ṇ̵̝̬̥̠̮̩͚̗͍͇͇͊̏̈́o̸̲̼͕͓̼̜̦͍͔̙͕͈̊̈́̅̋̆͒̅͌̅́̚͝͝͝͝ͅw̷͕͚͍̮̹̪̮͖̞̠̼͓̯̫̓͜ ̶̧̫̣̟̼̻͚̞̹̯̉̃̑͑b̷͎̞̹̘̣̫͖͔̰̘͕̪̲̭͓͕͌͆ͅä̶͉͖͖̥̮̭͔̖̒̊̊͆̋̌̿̃̿͂̍͋̍͆̍n̶̥̓̒̏͑͂̉͋̃͛̐͋͝͠͝n̵̩̺͖̦̥̆͆̆̑̄͆̔̃̀̃̕͝ē̵͙̬͚̝̭͑̃̓̀́̾͠ḋ̵̡͎̖̻͕͖̮̜̖̗̠͙͔̻̰̰̮̓͂̈̇̉̓̚");
         }
     }
 }
