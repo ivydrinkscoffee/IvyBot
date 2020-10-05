@@ -15,9 +15,10 @@ clone the repository with `git clone https://github.com/Ivy-Wusky/ivy-bot.git` t
     </startup>  
   <appSettings>  
     <add key="Token" value="replace with your bot token"/>
-    <add key="Host" value="replace with the set address"/>
-    <add key="Port" value="replace with the set port"/>
-    <add key="Password" value="replace with the set password"/>
+    <add key="Prefix" value="replace with a prefix of your choice"
+    <add key="Host" value="replace with the set lavalink address"/>
+    <add key="Port" value="replace with the set lavalink port"/>
+    <add key="Password" value="replace with the set lavalink password"/>
   </appSettings>  
 </configuration>  
 ```

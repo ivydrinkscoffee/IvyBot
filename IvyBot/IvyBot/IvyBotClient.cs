@@ -61,7 +61,7 @@ namespace IvyBot
             _client.Log += LogAsync;
             _services = SetupServices();
 
-            var cmdHandler = new CommandHandler(_client, _cmdService, _services);
+            var cmdHandler = new CommandHandler(_client, _cmdService, _services, _config);
             await cmdHandler.InitializeAsync();
 
             await _services.GetRequiredService<MusicService>().InitializeAsync();
