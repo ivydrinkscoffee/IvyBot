@@ -29,6 +29,7 @@ namespace IvyBot.Services
                 Port = port,
                 Password = _config.GetValueFor(Constants.LavaPassword)
             });
+            
             _lavaSocketClient = lavaSocketClient;
             _logService = logService;
         }
