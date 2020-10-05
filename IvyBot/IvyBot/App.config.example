@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<configuration>  
+    <startup>   
+        <supportedRuntime version="v4.0" sku="netcoreapp2.1" />  
+    </startup>  
+  <appSettings>  
+    <add key="Token" value="replace with your bot token"/>
+    <add key="Prefix" value="replace with a prefix of your choice"
+    <add key="Host" value="replace with the set lavalink address"/>
+    <add key="Port" value="replace with the set lavalink port"/>
+    <add key="Password" value="replace with the set lavalink password"/>
+  </appSettings>  
+</configuration>  

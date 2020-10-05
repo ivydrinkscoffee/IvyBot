@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Victoria;
 using Victoria.Entities;
+using IvyBot.Configuration;
+using System;
 
 namespace IvyBot.Services
 {
@@ -13,15 +15,21 @@ namespace IvyBot.Services
         private readonly LavaSocketClient _lavaSocketClient;
         private readonly DiscordSocketClient _client;
         private readonly LogService _logService;
+        private IConfiguration _config;
 
-        public MusicService(DiscordSocketClient client, LavaSocketClient lavaSocketClient, LogService logService)
+        public MusicService(DiscordSocketClient client, LavaSocketClient lavaSocketClient, LogService logService, IConfiguration config)
         {
             _client = client;
+            _config = config;
+
+            int port = Int32.Parse(_config.GetValueFor(Constants.LavaPort));
+
             _lavaRestClient = new LavaRestClient(new Victoria.Configuration {
-                Host = "replace with the set address",
-                Port = 69,
-                Password = "replace with the set password"
+                Host = _config.GetValueFor(Constants.LavaHost),
+                Port = port,
+                Password = _config.GetValueFor(Constants.LavaPassword)
             });
+            
             _lavaSocketClient = lavaSocketClient;
             _logService = logService;
         }
@@ -134,10 +142,12 @@ namespace IvyBot.Services
 
         public async Task ClientReadyAsync()
         {
+            int port = Int32.Parse(_config.GetValueFor(Constants.LavaPort));
+
             await _lavaSocketClient.StartAsync(_client, new Victoria.Configuration {
-                Host = "replace with the set address",
-                Port = 69,
-                Password = "replace with the set password"
+                Host = _config.GetValueFor(Constants.LavaHost),
+                Port = port,
+                Password = _config.GetValueFor(Constants.LavaPassword)
             });
         }
 

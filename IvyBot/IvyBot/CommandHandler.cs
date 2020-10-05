@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using Discord;
+using IvyBot.Configuration;
 
 namespace IvyBot
 {
@@ -12,12 +13,14 @@ namespace IvyBot
         private readonly DiscordSocketClient _client;
         private readonly CommandService _cmdService;
         private readonly IServiceProvider _services;
+        private readonly IConfiguration _config;
 
-        public CommandHandler(DiscordSocketClient client, CommandService cmdService, IServiceProvider services)
+        public CommandHandler(DiscordSocketClient client, CommandService cmdService, IServiceProvider services, IConfiguration config)
         {
             _client = client;
             _cmdService = cmdService;
             _services = services;
+            _config = config;
         }
 
         public async Task InitializeAsync()
@@ -36,7 +39,7 @@ namespace IvyBot
             if (userMessage is null)
                 return;
 
-            if (!(userMessage.HasMentionPrefix(_client.CurrentUser, ref argPos) || userMessage.HasStringPrefix(".", ref argPos) || userMessage.HasStringPrefix("osu!", ref argPos)))
+            if (!(userMessage.HasMentionPrefix(_client.CurrentUser, ref argPos) || userMessage.HasStringPrefix(_config.GetValueFor(Constants.BotPrefix), ref argPos) || userMessage.HasStringPrefix("osu!", ref argPos)))
                 return;
 
             var context = new SocketCommandContext(_client, userMessage);
