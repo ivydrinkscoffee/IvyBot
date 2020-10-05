@@ -42,7 +42,7 @@ namespace IvyBot
 
         public async Task InitializeAsync()
         {
-            await _client.LoginAsync(TokenType.Bot, "youarenotgettingmybottoken");
+            await _client.LoginAsync(TokenType.Bot, "replace with your bot token");
 
             timer = new Timer(async _ =>
             {
