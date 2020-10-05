@@ -9,6 +9,7 @@ using IvyBot.Services;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using IvyBot.Configuration;
 
 namespace IvyBot
 {
@@ -18,6 +19,7 @@ namespace IvyBot
         private readonly CommandService _cmdService;
         private IServiceProvider _services;
         private readonly LogService _logService;
+        private readonly IConfiguration _config;
         private Timer timer;
         private List<string> statusList = new List<string>() { "music update | .play", "people inviting me | .invite" };
         private int statusIndex = 0;
@@ -38,16 +40,18 @@ namespace IvyBot
             });
 
             _logService = new LogService();
+
+            _config = new ConfigManager();
         }
 
         public async Task InitializeAsync()
         {
-            await _client.LoginAsync(TokenType.Bot, "youarenotgettingmybottoken");
+            await _client.LoginAsync(TokenType.Bot, _config.GetValueFor(Constants.BotToken));
 
             timer = new Timer(async _ =>
             {
                 await _client.SetGameAsync(statusList.ElementAtOrDefault(statusIndex), type: ActivityType.Listening);
-                statusIndex = statusIndex + 1 == statusList.Count ? 0 : statusIndex + 1; //increment index position and restart if end of list
+                statusIndex = statusIndex + 1 == statusList.Count ? 0 : statusIndex + 1;
             },
             null,
             TimeSpan.FromSeconds(1),
@@ -77,6 +81,7 @@ namespace IvyBot
             .AddSingleton(_client)
             .AddSingleton(_cmdService)
             .AddSingleton(_logService)
+            .AddSingleton(_config)
             .AddSingleton<LavaRestClient>()
             .AddSingleton<LavaSocketClient>()
             .AddSingleton<MusicService>()
