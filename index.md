@@ -35,4 +35,4 @@ additional commands and an **nsfw** module
 
 [some random api](https://some-random-api.ml)
 # support
-contact me on my [discord server](https://discord.gg/svMC3dt) for further help
+**contact** me on my [discord server](https://discord.gg/svMC3dt) for further help
