@@ -4,7 +4,7 @@ namespace IvyBot
     {
         public const string BotToken = "Token";
         public const string LavaHost = "Host";
-        public const string LavaPort = "Port";
+        public const int LavaPort = "Port";
         public const string LavaPassword = "Password";
     }
 }
