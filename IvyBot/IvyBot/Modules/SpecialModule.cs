@@ -1,6 +1,7 @@
 using Discord.Commands;
 using System.IO;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace IvyBot.Modules
 {
@@ -11,7 +12,7 @@ namespace IvyBot.Modules
         [Summary("Sends the latest pchtxt for Splatoon 2")]
         public async Task SendPatchesAsync()
         {
-            var filestream = System.Net.WebRequest.Create("https://raw.githubusercontent.com/CrustySean/CrustyMods/master/5.3.0public.pchtxt");
+            var filestream = WebRequest.Create("https://raw.githubusercontent.com/CrustySean/CrustyMods/master/5.3.0public.pchtxt");
             Stream stream = filestream.GetResponse().GetResponseStream();
             await Context.Channel.SendFileAsync(stream, "5.3.0public.pchtxt");
         }
