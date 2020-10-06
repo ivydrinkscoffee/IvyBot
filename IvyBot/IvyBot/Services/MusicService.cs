@@ -22,11 +22,11 @@ namespace IvyBot.Services
             _client = client;
             _config = config;
 
-            int port = Int32.Parse(_config.GetValueFor(Constants.LavaPort));
+            int _port = Int32.Parse(_config.GetValueFor(Constants.LavaPort));
 
             _lavaRestClient = new LavaRestClient(new Victoria.Configuration {
                 Host = _config.GetValueFor(Constants.LavaHost),
-                Port = port,
+                Port = _port,
                 Password = _config.GetValueFor(Constants.LavaPassword)
             });
             
@@ -142,11 +142,11 @@ namespace IvyBot.Services
 
         public async Task ClientReadyAsync()
         {
-            int port = Int32.Parse(_config.GetValueFor(Constants.LavaPort));
+            int _port = Int32.Parse(_config.GetValueFor(Constants.LavaPort));
 
             await _lavaSocketClient.StartAsync(_client, new Victoria.Configuration {
                 Host = _config.GetValueFor(Constants.LavaHost),
-                Port = port,
+                Port = _port,
                 Password = _config.GetValueFor(Constants.LavaPassword)
             });
         }
