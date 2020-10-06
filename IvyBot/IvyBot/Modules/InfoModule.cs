@@ -62,7 +62,7 @@ namespace IvyBot.Modules
         [Summary("Returns the amount of users in the server")]
         public async Task GetUserCount()
         {
-            await Context.Channel.SendMessageAsync($"{Context.Guild.MemberCount} members");
+            await Context.Channel.SendMessageAsync($"**{Context.Guild.MemberCount}** members");
         }
 
         [Command("serverinfo", RunMode = RunMode.Async)]
