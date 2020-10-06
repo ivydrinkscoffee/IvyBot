@@ -87,7 +87,8 @@ namespace IvyBot
             .AddSingleton<MusicService>()
             .BuildServiceProvider();
         
-        /*internal static async Task MessageUpdated(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
+        /*
+        internal static async Task MessageUpdated(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
         {
             var message = await before.GetOrDownloadAsync();
 
