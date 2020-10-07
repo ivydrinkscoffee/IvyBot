@@ -46,6 +46,7 @@ namespace IvyBot.Modules
                     });
 
                     builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
+                    builder.WithCurrentTimestamp();
                 }
             }
 
@@ -81,6 +82,7 @@ namespace IvyBot.Modules
                 });
 
                 builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
+                builder.WithCurrentTimestamp();
             }
 
             await ReplyAsync("", false, builder.Build());
