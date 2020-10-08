@@ -39,7 +39,7 @@ namespace IvyBot
             if (userMessage is null)
                 return;
 
-            if (!(userMessage.HasMentionPrefix(_client.CurrentUser, ref argPos) || userMessage.HasStringPrefix(_config.GetValueFor(Constants.BotPrefix), ref argPos) || userMessage.HasStringPrefix("osu!", ref argPos)))
+            if (!(userMessage.HasMentionPrefix(_client.CurrentUser, ref argPos) || userMessage.HasStringPrefix(_config.GetValueFor(Constants.BotPrefix), ref argPos)))
                 return;
 
             var context = new SocketCommandContext(_client, userMessage);
