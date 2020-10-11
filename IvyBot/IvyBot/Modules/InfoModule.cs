@@ -17,9 +17,9 @@ namespace IvyBot.Modules
             var defaultAvatar = userInfo.GetDefaultAvatarUrl();
 
             EmbedBuilder builder = new EmbedBuilder();
-
-            builder.WithTitle($"{userInfo.Mention}");
+            
             builder.AddField("Username", $"{userInfo.Username}#{userInfo.Discriminator}", true);
+            builder.AddField("Mention", $"{userInfo.Mention}", true);
             builder.AddField("Bot", $"{userInfo.IsBot}", true);
             builder.AddField("Webhook", $"{userInfo.IsWebhook}", true);
             builder.AddField("Account Creation Date", $"{userInfo.CreatedAt}", true);
