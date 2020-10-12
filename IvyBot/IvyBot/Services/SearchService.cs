@@ -22,9 +22,9 @@ namespace IvyBot.Services
                 
                 throw new ArgumentNullException(nameof(url));
             
-            var cl = headers == null || method == RequestHttpMethod.POST ? http : new HttpClient();
+            var something = headers == null || method == RequestHttpMethod.POST ? http : new HttpClient();
             
-            cl.DefaultRequestHeaders.Clear();
+            something.DefaultRequestHeaders.Clear();
             
             switch (method)
             {
@@ -34,35 +34,35 @@ namespace IvyBot.Services
                     {
                         foreach (var header in headers)
                         {
-                            cl.DefaultRequestHeaders.TryAddWithoutValidation(header.Key, header.Value);
+                            something.DefaultRequestHeaders.TryAddWithoutValidation(header.Key, header.Value);
                         }
                     }
                     
-                    return await cl.GetStreamAsync(url).ConfigureAwait(false);
+                    return await something.GetStreamAsync(url).ConfigureAwait(false);
                 
                 case RequestHttpMethod.POST:
                     
-                    FormUrlEncodedContent formContent = null;
+                    FormUrlEncodedContent formdatcontent = null;
                     
                     if (headers != null)
                     {
-                        formContent = new FormUrlEncodedContent(headers);
+                        formdatcontent = new FormUrlEncodedContent(headers);
                     }
                     
-                    var message = await cl.PostAsync(url, formContent).ConfigureAwait(false);
+                    var message = await something.PostAsync(url, formdatcontent).ConfigureAwait(false);
                     return await message.Content.ReadAsStreamAsync().ConfigureAwait(false);
                 
                 default:
                     
-                    throw new NotImplementedException("That type of request is unsupported.");
+                    throw new NotImplementedException("Request type unsupported.");
             }
         }
         
         public static async Task<string> GetResponseStringAsync(string url, IEnumerable<KeyValuePair<string, string>> headers = null, RequestHttpMethod method = RequestHttpMethod.GET)
         {
-            using (var streamReader = new StreamReader(await GetResponseStreamAsync(url, headers, method).ConfigureAwait(false)))
+            using (var streampoop = new StreamReader(await GetResponseStreamAsync(url, headers, method).ConfigureAwait(false)))
             {
-                return await streamReader.ReadToEndAsync().ConfigureAwait(false);
+                return await streampoop.ReadToEndAsync().ConfigureAwait(false);
             }
         }
     }
