@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -23,8 +24,33 @@ namespace IvyBot.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                // Console.WriteLine(ex.Message);
                 return $"Error in rule34 search: {ex.Message}";
+            }
+        }
+
+        public static async Task<string> GetE621File(string tag)
+        {
+            try
+            {
+                var headers = new Dictionary<string,string> { {"User-Agent", "ivy-bot/3.0 (https://github.com/Ivy-Wusky/ivy-bot)"} };
+                
+                var random = new Random();
+                string poop = @"""url""";
+                var url = $"http://e621.net/posts.json?limit=100&tags={tag.Replace(" ", "%20")}";
+                var webpage = await SearchService.GetResponseStringAsync(url, headers).ConfigureAwait(false);
+                var matches = Regex.Matches(webpage, $"{poop}:\"(?<url>.*?)\"");
+                
+                if (matches.Count == 0)
+                return null;
+                
+                var match = matches[random.Next(0, matches.Count)];
+                return matches[random.Next(0, matches.Count)].Groups["url"].Value;
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine(ex.Message);
+                return $"Error in e621 search: {ex.Message}";
             }
         }
     }
