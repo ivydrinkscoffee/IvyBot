@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IvyBot.Services
 {
-    public enum RequestHttpMethod
+    public enum HttpRequestMethod
     {
         GET,
         POST
@@ -16,19 +16,19 @@ namespace IvyBot.Services
     {
         private static readonly HttpClient http = new HttpClient();
         
-        public static async Task<Stream> GetResponseStreamAsync(string url, IEnumerable<KeyValuePair<string, string>> headers = null, RequestHttpMethod method = RequestHttpMethod.GET)
+        public static async Task<Stream> GetResponseStreamAsync(string url, IEnumerable<KeyValuePair<string, string>> headers = null, HttpRequestMethod method = HttpRequestMethod.GET)
         {
             if (string.IsNullOrWhiteSpace(url))
                 
                 throw new ArgumentNullException(nameof(url));
             
-            var something = headers == null || method == RequestHttpMethod.POST ? http : new HttpClient();
+            var something = headers == null || method == HttpRequestMethod.POST ? http : new HttpClient();
             
             something.DefaultRequestHeaders.Clear();
             
             switch (method)
             {
-                case RequestHttpMethod.GET:
+                case HttpRequestMethod.GET:
                     
                     if (headers != null)
                     {
@@ -38,9 +38,9 @@ namespace IvyBot.Services
                         }
                     }
                     
-                    return await something.GetStreamAsync(url).ConfigureAwait(false);
+                    return await something.GetStreamAsync(url);
                 
-                case RequestHttpMethod.POST:
+                case HttpRequestMethod.POST:
                     
                     FormUrlEncodedContent formdatcontent = null;
                     
@@ -49,8 +49,8 @@ namespace IvyBot.Services
                         formdatcontent = new FormUrlEncodedContent(headers);
                     }
                     
-                    var message = await something.PostAsync(url, formdatcontent).ConfigureAwait(false);
-                    return await message.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                    var message = await something.PostAsync(url, formdatcontent);
+                    return await message.Content.ReadAsStreamAsync();
                 
                 default:
                     
@@ -58,11 +58,11 @@ namespace IvyBot.Services
             }
         }
         
-        public static async Task<string> GetResponseStringAsync(string url, IEnumerable<KeyValuePair<string, string>> headers = null, RequestHttpMethod method = RequestHttpMethod.GET)
+        public static async Task<string> GetResponseStringAsync(string url, IEnumerable<KeyValuePair<string, string>> headers = null, HttpRequestMethod method = HttpRequestMethod.GET)
         {
-            using (var streampoop = new StreamReader(await GetResponseStreamAsync(url, headers, method).ConfigureAwait(false)))
+            using (var streampoop = new StreamReader(await GetResponseStreamAsync(url, headers, method)))
             {
-                return await streampoop.ReadToEndAsync().ConfigureAwait(false);
+                return await streampoop.ReadToEndAsync();
             }
         }
     }
