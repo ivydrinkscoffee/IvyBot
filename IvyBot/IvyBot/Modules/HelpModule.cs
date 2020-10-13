@@ -81,7 +81,6 @@ namespace IvyBot.Modules
                     x.IsInline = false;
                 });
 
-                builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
                 builder.WithCurrentTimestamp();
             }
 
