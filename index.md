@@ -22,8 +22,9 @@ clone the repository with `git clone https://github.com/Ivy-Wusky/ivy-bot.git` t
 ```
 
 remember that if you are running your **lavalink** instance on [heroku](https://www.heroku.com) the port will always be **80** regardless of the port you set
+
 # future plans
-additional commands and an **nsfw** module
+additional commands and [migrating to latest .net core and dependencies](https://github.com/Ivy-Wusky/ivy-bot/projects/1)
 # credits
 [discord.net](https://github.com/discord-net/Discord.Net)
 
