@@ -13,7 +13,7 @@ namespace IvyBot.Services
             {
                 var random = new Random();
                 var url = $"http://rule34.xxx/index.php?page=dapi&s=post&q=index&limit=100&tags={tag.Replace(" ", "_")}";
-                var webpage = await SearchService.GetResponseStringAsync(url).ConfigureAwait(false);
+                var webpage = await SearchService.GetResponseStringAsync(url);
                 var matches = Regex.Matches(webpage, "file_url=\"(?<url>.*?)\"");
                 
                 if (matches.Count == 0)
@@ -38,7 +38,7 @@ namespace IvyBot.Services
                 var random = new Random();
                 string poop = @"""url""";
                 var url = $"http://e621.net/posts.json?limit=100&tags={tag.Replace(" ", "%20")}";
-                var webpage = await SearchService.GetResponseStringAsync(url, headers).ConfigureAwait(false);
+                var webpage = await SearchService.GetResponseStringAsync(url, headers);
                 var matches = Regex.Matches(webpage, $"{poop}:\"(?<url>.*?)\"");
                 
                 if (matches.Count == 0)
