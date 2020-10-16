@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore IvyBot/IvyBot/IvyBot.csproj
     - name: Build
-      run: dotnet build IvyBot/IvyBot/IvyBot.csproj --configuration Release --no-restore
+      run: dotnet build IvyBot/IvyBot/IvyBot.csproj --configuration Debug --no-restore
     - name: Test
       run: dotnet test IvyBot/IvyBot/IvyBot.csproj --no-restore --verbosity normal
     - name: Publish
