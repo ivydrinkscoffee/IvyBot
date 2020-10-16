@@ -20,9 +20,9 @@ namespace IvyBot
         private IServiceProvider _services;
         private readonly LogService _logService;
         private readonly IConfiguration _config;
-        private Timer timer;
-        private List<string> statusList = new List<string>() { "music update | .play", "people inviting me | .invite" };
-        private int statusIndex = 0;
+        private Timer _timer;
+        private List<string> _statusList = new List<string>() { "music update | .play", "people inviting me | .invite" };
+        private int _statusIndex = 0;
 
         public IvyBotClient()
         {
@@ -48,10 +48,10 @@ namespace IvyBot
         {
             await _client.LoginAsync(TokenType.Bot, _config.GetValueFor(Constants.BotToken));
 
-            timer = new Timer(async _ =>
+            _timer = new Timer(async _ =>
             {
-                await _client.SetGameAsync(statusList.ElementAtOrDefault(statusIndex), type: ActivityType.Listening);
-                statusIndex = statusIndex + 1 == statusList.Count ? 0 : statusIndex + 1;
+                await _client.SetGameAsync(_statusList.ElementAtOrDefault(_statusIndex), type: ActivityType.Listening);
+                _statusIndex = _statusIndex + 1 == _statusList.Count ? 0 : _statusIndex + 1;
             },
             null,
             TimeSpan.FromSeconds(1),
