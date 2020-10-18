@@ -7,7 +7,7 @@ namespace IvyBot.Services
 {
     public class NSFWService
     {
-        public async Task<string> GetRule34File(string tag)
+        public static async Task<string> GetRule34File(string tag)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace IvyBot.Services
             }
         }
 
-        public async Task<string> GetE621File(string tag)
+        public static async Task<string> GetE621File(string tag)
         {
             try
             {
