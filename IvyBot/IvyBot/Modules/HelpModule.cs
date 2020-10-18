@@ -38,11 +38,11 @@ namespace IvyBot.Modules
                 
                 if (!string.IsNullOrWhiteSpace(description))
                 {
-                    builder.AddField(x =>
+                    builder.AddField(_field =>
                     {
-                        x.Name = module.Name;
-                        x.Value = description;
-                        x.IsInline = false;
+                        _field.Name = module.Name;
+                        _field.Value = description;
+                        _field.IsInline = false;
                     });
 
                     builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
@@ -74,11 +74,11 @@ namespace IvyBot.Modules
             {
                 var cmd = match.Command;
 
-                builder.AddField(x =>
+                builder.AddField(_field =>
                 {
-                    x.Name = string.Join(", ", cmd.Aliases);
-                    x.Value = $"{cmd.Summary}";
-                    x.IsInline = false;
+                    _field.Name = string.Join(", ", cmd.Aliases);
+                    _field.Value = $"{cmd.Summary}";
+                    _field.IsInline = false;
                 });
 
                 builder.WithCurrentTimestamp();
