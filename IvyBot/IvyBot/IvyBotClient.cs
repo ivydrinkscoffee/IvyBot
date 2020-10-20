@@ -21,7 +21,7 @@ namespace IvyBot
         private readonly LogService _logService;
         private readonly IConfiguration _config;
         private Timer _timer;
-        private List<string> _statusList = new List<string>() { "music update | .play", "people inviting me | .invite" };
+        private List<string> _statusList = new List<string>() { "music | .play", "people | .help" };
         private int _statusIndex = 0;
 
         public IvyBotClient()

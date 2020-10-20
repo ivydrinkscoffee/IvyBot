@@ -8,7 +8,7 @@ namespace IvyBot.Modules
     [Name("Information")]
     public class InfoModule : ModuleBase<SocketCommandContext>
     {
-        [Command("whois")]
+        [Command("whois", RunMode = RunMode.Async)]
         [Summary("Returns the information of the specified user")]
         public async Task UserInfoAsync(SocketUser user = null)
         {
