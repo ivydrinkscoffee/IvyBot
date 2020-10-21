@@ -19,7 +19,7 @@ namespace IvyBot.Modules
         private IvyBotClient _client;
 
         [Command("eval", RunMode = RunMode.Async)]
-        [Summary("Runs a C# sniplet and sends the result")]
+        [Summary("Runs a C# snippet and sends the result")]
         public async Task ExecuteAsync([Remainder] string code)
         {
             var user = Context.User as SocketUser;
