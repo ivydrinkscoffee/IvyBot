@@ -17,14 +17,13 @@ namespace IvyBot.Services
                 var matches = Regex.Matches(webpage, "file_url=\"(?<url>.*?)\"");
                 
                 if (matches.Count == 0)
-                return null;
+                    return "No results found";
                 
                 var match = matches[random.Next(0, matches.Count)];
                 return matches[random.Next(0, matches.Count)].Groups["url"].Value;
             }
             catch (Exception ex)
             {
-                // Console.WriteLine(ex.Message);
                 return $"Error in rule34 search: {ex.Message}";
             }
         }
@@ -36,20 +35,19 @@ namespace IvyBot.Services
                 var headers = new Dictionary<string,string> { {"User-Agent", "ivy-bot/4.0 (https://github.com/Ivy-Wusky/ivy-bot)"} };
                 
                 var random = new Random();
-                string poop = @"""url""";
+                string reference = @"""url""";
                 var url = $"http://e621.net/posts.json?limit=100&tags={tag.Replace(" ", "%20")}";
                 var webpage = await SearchService.GetResponseStringAsync(url, headers);
-                var matches = Regex.Matches(webpage, $"{poop}:\"(?<url>.*?)\"");
+                var matches = Regex.Matches(webpage, $"{reference}:\"(?<url>.*?)\"");
                 
                 if (matches.Count == 0)
-                return null;
+                    return "No results found";
                 
                 var match = matches[random.Next(0, matches.Count)];
                 return matches[random.Next(0, matches.Count)].Groups["url"].Value;
             }
             catch (Exception ex)
             {
-                // Console.WriteLine(ex.Message);
                 return $"Error in e621 search: {ex.Message}";
             }
         }
