@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Discord;
 using IvyBot.Configuration;
+using IvyBot.Services;
 
 namespace IvyBot
 {
@@ -14,13 +15,15 @@ namespace IvyBot
         private readonly CommandService _cmdService;
         private readonly IServiceProvider _services;
         private readonly IConfiguration _config;
+        private readonly LogService _logService;
 
-        public CommandHandler(DiscordSocketClient client, CommandService cmdService, IServiceProvider services, IConfiguration config)
+        public CommandHandler(DiscordSocketClient client, CommandService cmdService, IServiceProvider services, IConfiguration config, LogService logService)
         {
             _client = client;
             _cmdService = cmdService;
             _services = services;
             _config = config;
+            _logService = logService;
         }
 
         public async Task InitializeAsync()
@@ -33,7 +36,9 @@ namespace IvyBot
         private async Task HandleMessageAsync(SocketMessage socketMessage)
         {
             var argPos = 0;
-            if (socketMessage.Author.IsBot) return;
+            
+            if (socketMessage.Author.IsBot) 
+                return;
 
             var userMessage = socketMessage as SocketUserMessage;
             if (userMessage is null)
@@ -46,10 +51,10 @@ namespace IvyBot
             var result = await _cmdService.ExecuteAsync(context, argPos, _services);
         }
 
-        private Task LogAsync(LogMessage logMessage)
+        private async Task LogAsync(LogMessage logMessage)
         {
-            Console.WriteLine(logMessage.Message);
-            return Task.CompletedTask;
+            await _logService.LogAsync(logMessage);
+            await Task.CompletedTask;
         }
     }
 }

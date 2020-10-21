@@ -16,7 +16,7 @@ namespace IvyBot.Modules
             public IvyBotClient client { get; internal set; }
         }
 
-        private IvyBotClient _client;
+        private readonly IvyBotClient _client;
 
         [Command("eval", RunMode = RunMode.Async)]
         [Summary("Runs a C# snippet and sends the result")]
@@ -24,13 +24,13 @@ namespace IvyBot.Modules
         {
             var user = Context.User as SocketUser;
             
-            IEnumerable<string> metadata = new List<string>() { "System.Collections.Generic", "System.Linq", "System.Net", "System.IO", "Newtonsoft.Json" };
+            IEnumerable<string> metadata = new List<string>() { "System", "System.Collections.Generic", "System.Linq", "System.Net", "System.IO", "System.Threading.Tasks", "Newtonsoft.Json", "Victoria" };
             
             var globals = new ScriptGlobals { client = _client };
             
             var options = ScriptOptions.Default
                 .AddReferences(metadata)
-                .AddImports("System.Collections.Generic", "System.Linq", "System.Net", "System.IO", "Newtonsoft.Json");
+                .AddImports( "System", "System.Collections.Generic", "System.Linq", "System.Net", "System.IO", "System.Threading.Tasks", "Newtonsoft.Json", "Victoria");
             
             var text = code.Trim('`');
 

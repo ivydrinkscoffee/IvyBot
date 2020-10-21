@@ -24,7 +24,7 @@ namespace IvyBot.Services
             }
             catch (Exception ex)
             {
-                return $"Error in rule34 search: {ex.Message}";
+                return $"Error in Rule34 search: {ex.Message}";
             }
         }
 
@@ -48,7 +48,7 @@ namespace IvyBot.Services
             }
             catch (Exception ex)
             {
-                return $"Error in e621 search: {ex.Message}";
+                return $"Error in E621 search: {ex.Message}";
             }
         }
     }

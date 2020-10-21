@@ -54,7 +54,7 @@ namespace IvyBot.Services
                 
                 default:
                     
-                    throw new NotImplementedException("Request type unsupported.");
+                    throw new NotImplementedException("Request type unsupported");
             }
         }
         
