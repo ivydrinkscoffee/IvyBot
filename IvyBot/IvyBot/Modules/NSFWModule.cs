@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using IvyBot.Services;
@@ -19,14 +18,7 @@ namespace IvyBot.Modules
             {
                 var link = NSFWService.GetRule34File(tag);
 
-                EmbedBuilder builder = new EmbedBuilder();
-
-                builder.WithImageUrl(link.Result);
-                builder.WithFooter("Powered by rule34.xxx");
-                builder.WithColor(Color.Blue);
-                builder.WithCurrentTimestamp();
-
-                await Context.Channel.SendMessageAsync("", false, builder.Build());
+                await ReplyAsync(link.Result);
             }
             else
             {
@@ -44,14 +36,7 @@ namespace IvyBot.Modules
             {
                 var link = NSFWService.GetE621File(tag);
 
-                EmbedBuilder builder = new EmbedBuilder();
-
-                builder.WithImageUrl(link.Result);
-                builder.WithFooter("Powered by e621.net");
-                builder.WithColor(Color.Blue);
-                builder.WithCurrentTimestamp();
-
-                await Context.Channel.SendMessageAsync("", false, builder.Build());
+                await ReplyAsync(link.Result);
             }
             else
             {
