@@ -54,7 +54,7 @@ namespace IvyBot.Modules
             }
             else
             {
-                await ReplyAsync("Only the owner of the bot can use this command");
+                await ReplyAsync("Only the **owner** of the bot can use this command");
             }
         }
     }
