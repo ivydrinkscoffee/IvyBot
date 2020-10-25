@@ -8,6 +8,15 @@ namespace IvyBot.Modules
     [Name("Special")]
     public class SpecialModule : ModuleBase<SocketCommandContext>
     {
+        [Command("longelmo", RunMode = RunMode.Async)]
+        [Summary("This elmo is long")]
+        public async Task LongElmoAsync()
+        {
+            var filestream = WebRequest.Create("https://cdn.discordapp.com/attachments/762004355888185365/767022764916736020/video0.mp4");
+            Stream stream = filestream.GetResponse().GetResponseStream();
+            await Context.Channel.SendFileAsync(stream, "superstrong.mp4", "https://twitter.com/intent/tweet?hashtags=LongElmo2020%2CMakeAmericaLongAgain");
+        }
+        
         [Command("530public", RunMode = RunMode.Async)]
         [Summary("Sends the latest pchtxt for Splatoon 2")]
         public async Task SendPatchesAsync()

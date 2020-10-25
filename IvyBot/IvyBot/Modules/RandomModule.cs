@@ -22,6 +22,40 @@ namespace IvyBot.Modules
             await ReplyAsync($"{smug[index]}");
         }
 
+        [Command("ratedick", RunMode = RunMode.Async)]
+        [Summary("The gay council will decide your dick's fate")]
+        public async Task RateAsync()
+        {
+            string[] length = { "==========", "=========", "========", "=======", "======", "=====", "====", "===", "==", "=", "()" };
+            string[] rating = { "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0" };
+            
+            Random random = new Random();
+            
+            int lengthIndex = random.Next(length.Length);
+            int ratingIndex = random.Next(rating.Length);
+
+            EmbedBuilder builder = new EmbedBuilder();
+
+            builder.WithTitle("Dick Rating");
+
+            if (length[lengthIndex].ToString() == "()")
+            {
+                builder.AddField("Dick Length", "()", true);
+                builder.AddField("Dick Rating", "0/10", true);
+            }
+            else
+            {
+                builder.AddField("Dick Length", $"8{length[lengthIndex]}D", true);
+                builder.AddField("Dick Rating", $"{rating[ratingIndex]}/10", true);
+            }
+
+            builder.WithCurrentTimestamp();
+            builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
+            builder.WithColor(Color.Blue);
+
+            await Context.Channel.SendMessageAsync("", false, builder.Build());
+        }
+
         [Command("duck", RunMode = RunMode.Sync)]
         [Summary("Sends a random duck")]
         public async Task GetDuck()
