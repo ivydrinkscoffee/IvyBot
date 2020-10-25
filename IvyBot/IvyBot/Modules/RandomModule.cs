@@ -36,17 +36,17 @@ namespace IvyBot.Modules
 
             EmbedBuilder builder = new EmbedBuilder();
 
-            builder.WithTitle("Dick Rating");
+            builder.WithTitle("Dick");
 
             if (length[lengthIndex].ToString() == "()")
             {
-                builder.AddField("Dick Length", "()", true);
-                builder.AddField("Dick Rating", "0/10", true);
+                builder.AddField("Length", "()", true);
+                builder.AddField("Rating", "0/10", true);
             }
             else
             {
-                builder.AddField("Dick Length", $"8{length[lengthIndex]}D", true);
-                builder.AddField("Dick Rating", $"{rating[ratingIndex]}/10", true);
+                builder.AddField("Length", $"8{length[lengthIndex]}D", true);
+                builder.AddField("Rating", $"{rating[ratingIndex]}/10", true);
             }
 
             builder.WithCurrentTimestamp();
