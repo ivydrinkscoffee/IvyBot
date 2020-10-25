@@ -53,7 +53,7 @@ namespace IvyBot.Modules
             await ReplyAsync("", false, builder.Build());
         }
 
-        [Command("help")]
+        [Command("cmd")]
         [Summary("Search for help on a specific command")]
         public async Task HelpAsync(string command)
         {
