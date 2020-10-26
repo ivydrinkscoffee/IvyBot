@@ -54,7 +54,7 @@ namespace IvyBot
         private async Task LogAsync(LogMessage logMessage)
         {
             await _logService.LogAsync(logMessage);
-            await Task.CompletedTask;
+            return await Task.CompletedTask;
         }
     }
 }
