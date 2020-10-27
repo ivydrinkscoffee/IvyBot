@@ -24,13 +24,13 @@ namespace IvyBot.Modules
         {
             var user = Context.User as SocketUser;
             
-            IEnumerable<string> metadata = new List<string>() { "System", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "Newtonsoft.Json", "Victoria" };
+            IEnumerable<string> metadata = new List<string>() { "System", "System.Diagnostics", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "System.Xml", "Newtonsoft.Json", "Victoria" };
             
             var globals = new ScriptGlobals { client = _client };
             
             var options = ScriptOptions.Default
                 .AddReferences(metadata)
-                .AddImports( "System", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "Newtonsoft.Json", "Victoria");
+                .AddImports( "System", "System.Diagnostics", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "System.Xml", "Newtonsoft.Json", "Victoria");
             
             var text = code.Trim('`');
 
