@@ -41,7 +41,7 @@ namespace IvyBot.Modules
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-            await Context.Channel.SendMessageAsync("*hugs* " + $"*{userInfo.Mention}*"); //$"\n{items["link"]}"); for 1 message only
+            await Context.Channel.SendMessageAsync("*hugs* " + $"*{userInfo.Mention}*");
             await Context.Channel.SendMessageAsync(items["link"]); 
         }
     }
