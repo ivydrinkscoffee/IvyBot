@@ -17,13 +17,13 @@ namespace IvyBot.Modules
             await Context.Channel.SendFileAsync(stream, "superstrong.mp4", "https://twitter.com/intent/tweet?hashtags=LongElmo2020%2CMakeAmericaLongAgain");
         }
         
-        [Command("530public", RunMode = RunMode.Async)]
+        [Command("531public", RunMode = RunMode.Async)]
         [Summary("Sends the latest pchtxt for Splatoon 2")]
         public async Task SendPatchesAsync()
         {
-            var filestream = WebRequest.Create("https://raw.githubusercontent.com/CrustySean/CrustyMods/master/5.3.0public.pchtxt");
+            var filestream = WebRequest.Create("https://cdn.discordapp.com/attachments/742845108424278027/770931426442084362/5.3.1public.pchtxt");
             Stream stream = filestream.GetResponse().GetResponseStream();
-            await Context.Channel.SendFileAsync(stream, "5.3.0public.pchtxt");
+            await Context.Channel.SendFileAsync(stream, "5.3.1public.pchtxt");
         }
 
         [Command("310starlion", RunMode = RunMode.Async)]

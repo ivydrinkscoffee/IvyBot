@@ -16,7 +16,7 @@ namespace IvyBot.Modules
             public IvyBotClient client { get; internal set; }
         }
 
-        private readonly IvyBotClient _client;
+        private static readonly IvyBotClient _client;
 
         [Command("eval", RunMode = RunMode.Async)]
         [Summary("Runs a C# snippet and sends the result")]
@@ -24,13 +24,13 @@ namespace IvyBot.Modules
         {
             var user = Context.User as SocketUser;
             
-            IEnumerable<string> metadata = new List<string>() { "System", "System.Diagnostics", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "System.Xml", "Newtonsoft.Json", "Victoria", "Victoria.Entities" };
+            IEnumerable<string> refs = new List<string>() { "System", "System.Diagnostics", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "System.Xml", "Newtonsoft.Json", "Victoria", "Victoria.Entities" };
             
             var globals = new ScriptGlobals { client = _client };
             
             var options = ScriptOptions.Default
-                .AddReferences(metadata)
-                .AddImports("System", "System.Diagnostics", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "System.Xml", "Newtonsoft.Json", "Victoria", "Victoria.Entities");
+                .AddReferences(refs)
+                .AddImports(refs);
             
             var text = code.Trim('`');
 
@@ -45,6 +45,10 @@ namespace IvyBot.Modules
                     if (returnValue != null)
                     {
                         await Context.Channel.SendMessageAsync($"```cs\n{returnValue.ToString()}\n```");
+                    }
+                    else
+                    {
+                        await Context.Channel.SendMessageAsync("An unkown error occured while attempting to run the script");
                     }
                 }
                 catch (Exception ex)

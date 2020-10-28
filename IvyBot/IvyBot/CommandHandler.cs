@@ -31,6 +31,8 @@ namespace IvyBot
             await _cmdService.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
             _cmdService.Log += LogAsync;
             _client.MessageReceived += HandleMessageAsync;
+            _client.MessageUpdated += HandleUpdatedMessageAsync;
+            _client.MessageDeleted += HandleDeletedMessageAsync;
         }
 
         private async Task HandleMessageAsync(SocketMessage socketMessage)
@@ -41,6 +43,7 @@ namespace IvyBot
                 return;
 
             var userMessage = socketMessage as SocketUserMessage;
+            
             if (userMessage is null)
                 return;
 
@@ -49,6 +52,97 @@ namespace IvyBot
 
             var context = new SocketCommandContext(_client, userMessage);
             var result = await _cmdService.ExecuteAsync(context, argPos, _services);
+        }
+
+        private async Task HandleUpdatedMessageAsync(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
+        {
+            try
+            {
+                var message = await before.GetOrDownloadAsync();
+                
+                if (after.Author.IsBot == true || after == null)
+                {
+                    return;
+                }
+                else
+                {
+                    var author = after.Author as SocketUser;
+                    var avatar = author.GetAvatarUrl(ImageFormat.Auto);
+                    var defaultAvatar = author.GetDefaultAvatarUrl();
+
+                    EmbedAuthorBuilder embedAuthorBuilder = new EmbedAuthorBuilder();
+
+                    embedAuthorBuilder.WithName($"Message edited by {author.Username}#{author.Discriminator}");
+            
+                    if (avatar == null)
+                    {
+                        embedAuthorBuilder.WithIconUrl(defaultAvatar);
+                    }
+                    else
+                    {
+                        embedAuthorBuilder.WithIconUrl(avatar);
+                    }
+
+                    EmbedBuilder builder = new EmbedBuilder();
+
+                    builder.AddField("Before", $"```diff\n- {message}\n```", true);
+                    builder.AddField("After", $"```diff\n+ {after}\n```", true);
+                    builder.WithAuthor(embedAuthorBuilder);
+                    builder.WithCurrentTimestamp();
+                    builder.WithColor(Color.Blue);
+
+                    await channel.SendMessageAsync("", false, builder.Build());
+                }
+            }
+            catch (Exception ex)
+            {
+                await channel.SendMessageAsync(ex.Message);
+            }
+        }
+
+        private async Task HandleDeletedMessageAsync(Cacheable<IMessage, ulong> message, ISocketMessageChannel channel)
+        {
+            try
+            {
+                var originalMessage = await message.GetOrDownloadAsync();
+                
+                if (originalMessage.Author.IsBot == true || originalMessage == null)
+                {
+                    return;
+                }
+                else
+                {
+                    var author = originalMessage.Author as SocketUser;
+                    var avatar = author.GetAvatarUrl(ImageFormat.Auto);
+                    var defaultAvatar = author.GetDefaultAvatarUrl();
+
+                    EmbedAuthorBuilder embedAuthorBuilder = new EmbedAuthorBuilder();
+
+                    embedAuthorBuilder.WithName($"Message deleted by {author.Username}#{author.Discriminator}");
+            
+                    if (avatar == null)
+                    {
+                        embedAuthorBuilder.WithIconUrl(defaultAvatar);
+                    }
+                    else
+                    {
+                        embedAuthorBuilder.WithIconUrl(avatar);
+                    }
+
+                    EmbedBuilder builder = new EmbedBuilder();
+
+                    builder.AddField("Message", $"```diff\n- {originalMessage}\n```", true);
+                    builder.WithAuthor(embedAuthorBuilder);
+                    builder.WithCurrentTimestamp();
+                    builder.WithColor(Color.Blue);
+
+                    await channel.SendMessageAsync("", false, builder.Build());
+                }
+            }
+            catch (Exception ex)
+            {
+                await channel.SendMessageAsync(ex.Message);
+            }
         }
 
         private async Task LogAsync(LogMessage logMessage)

@@ -65,8 +65,6 @@ namespace IvyBot
             await cmdHandler.InitializeAsync();
 
             await _services.GetRequiredService<MusicService>().InitializeAsync();
-
-            //_client.MessageUpdated += MessageUpdated;
             
             await Task.Delay(-1);
         }
@@ -86,23 +84,5 @@ namespace IvyBot
             .AddSingleton<LavaSocketClient>()
             .AddSingleton<MusicService>()
             .BuildServiceProvider();
-        
-        /*
-        internal static async Task MessageUpdated(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
-        {
-            var message = await before.GetOrDownloadAsync();
-
-            EmbedBuilder builder = new EmbedBuilder();
-
-            builder.WithTitle("Message Edited");
-            builder.AddField("Before", $"{message}", true);
-            builder.AddField("After", $"{after}", true);
-            builder.WithCurrentTimestamp();
-            builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
-            builder.WithColor(Color.Blue);
-
-            await channel.SendMessageAsync("", false, builder.Build());
-        }
-        */
     }
 }
