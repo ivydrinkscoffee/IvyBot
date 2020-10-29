@@ -17,12 +17,12 @@ namespace IvyBot
     {
         private readonly DiscordSocketClient _client;
         private readonly CommandService _cmdService;
-        private readonly IServiceProvider _services;
+        private IServiceProvider _services;
         private readonly LogService _logService;
         private readonly IConfiguration _config;
-        private readonly Timer _timer;
+        private Timer _timer;
         private readonly List<string> _statusList = new List<string>() { "music | .play", "people | .help" };
-        private readonly int _statusIndex = 0;
+        private int _statusIndex = 0;
 
         public IvyBotClient()
         {
