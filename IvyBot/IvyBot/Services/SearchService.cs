@@ -22,9 +22,9 @@ namespace IvyBot.Services
                 
                 throw new ArgumentNullException(nameof(url));
             
-            var something = headers == null || method == HttpRequestMethod.POST ? http : new HttpClient();
+            var client = headers == null || method == HttpRequestMethod.POST ? http : new HttpClient();
             
-            something.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Clear();
             
             switch (method)
             {
@@ -34,11 +34,11 @@ namespace IvyBot.Services
                     {
                         foreach (var header in headers)
                         {
-                            something.DefaultRequestHeaders.TryAddWithoutValidation(header.Key, header.Value);
+                            client.DefaultRequestHeaders.TryAddWithoutValidation(header.Key, header.Value);
                         }
                     }
                     
-                    return await something.GetStreamAsync(url);
+                    return await client.GetStreamAsync(url);
                 
                 case HttpRequestMethod.POST:
                     
@@ -49,7 +49,7 @@ namespace IvyBot.Services
                         formdatcontent = new FormUrlEncodedContent(headers);
                     }
                     
-                    var message = await something.PostAsync(url, formdatcontent);
+                    var message = await client.PostAsync(url, formdatcontent);
                     return await message.Content.ReadAsStreamAsync();
                 
                 default:
