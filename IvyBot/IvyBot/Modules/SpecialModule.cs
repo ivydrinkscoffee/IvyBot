@@ -34,12 +34,5 @@ namespace IvyBot.Modules
             Stream stream = filestream.GetResponse().GetResponseStream();
             await Context.Channel.SendFileAsync(stream, "starlion_public.rar");
         }
-
-        [Command("color", RunMode = RunMode.Async)]
-        [Summary("Sends an image of the color you have requested in hex")]
-        public async Task ColorViewer([Remainder] string hex)
-        {
-            await Context.Channel.SendMessageAsync("https://some-random-api.ml/canvas/colorviewer?hex=" + hex);
-        }
     }
 }

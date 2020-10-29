@@ -13,7 +13,7 @@ namespace IvyBot.Modules
     {
         public class ScriptGlobals
         {
-            public IvyBotClient client { get; internal set; }
+            public IvyBotClient client { get; set; }
         }
 
         private static readonly IvyBotClient _client;

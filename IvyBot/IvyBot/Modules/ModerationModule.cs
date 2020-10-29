@@ -12,11 +12,11 @@ namespace IvyBot.Modules
         [RequireBotPermission(GuildPermission.KickMembers)]
         [Command("kick", RunMode = RunMode.Async)]
         [Summary("Kicks the specified user")]
-        public async Task KickAsync(IGuildUser user)
+        public async Task KickAsync(IGuildUser user, [Remainder] string reason = null)
         {
             var check = new Emoji("✅");
             await Context.Message.AddReactionAsync(check);
-            await user.KickAsync();
+            await user.KickAsync(reason);
         }
 
         [RequireUserPermission(GuildPermission.KickMembers)]
@@ -34,11 +34,11 @@ namespace IvyBot.Modules
         [RequireBotPermission(GuildPermission.BanMembers)]
         [Command("ban", RunMode = RunMode.Async)]
         [Summary("Bans the specified user")]
-        public Task BanAsync(IGuildUser user)
+        public Task BanAsync(IGuildUser user, [Remainder] string reason = null)
         {
             var check = new Emoji("✅");
             Context.Message.AddReactionAsync(check);
-            return Context.Guild.AddBanAsync(user);
+            return Context.Guild.AddBanAsync(user, 0, reason);
         }
 
         [RequireUserPermission(GuildPermission.BanMembers)]

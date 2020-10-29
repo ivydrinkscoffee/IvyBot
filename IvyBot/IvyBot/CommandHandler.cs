@@ -60,19 +60,24 @@ namespace IvyBot
             {
                 var message = await before.GetOrDownloadAsync();
                 
-                if (after.Author.IsBot == true || after == null)
+                if (after.Author.IsBot == true || after is null)
                 {
                     return;
                 }
                 else
                 {
+                    string channelName = channel.Name;
+                    
+                    ulong logChannelId = 771314761807691808;
+                    var logChannel = _client.GetChannel(logChannelId) as ISocketMessageChannel;
+
                     var author = after.Author as SocketUser;
                     var avatar = author.GetAvatarUrl(ImageFormat.Auto);
                     var defaultAvatar = author.GetDefaultAvatarUrl();
 
                     EmbedAuthorBuilder embedAuthorBuilder = new EmbedAuthorBuilder();
 
-                    embedAuthorBuilder.WithName($"Message edited by {author.Username}#{author.Discriminator}");
+                    embedAuthorBuilder.WithName($"Message edited by {author.Username}#{author.Discriminator} in #{channelName}");
             
                     if (avatar == null)
                     {
@@ -91,7 +96,7 @@ namespace IvyBot
                     builder.WithCurrentTimestamp();
                     builder.WithColor(Color.Blue);
 
-                    await channel.SendMessageAsync("", false, builder.Build());
+                    await logChannel.SendMessageAsync("", false, builder.Build());
                 }
             }
             catch (Exception ex)
@@ -106,19 +111,24 @@ namespace IvyBot
             {
                 var originalMessage = await message.GetOrDownloadAsync();
                 
-                if (originalMessage.Author.IsBot == true || originalMessage == null)
+                if (originalMessage.Author.IsBot == true || originalMessage is null)
                 {
                     return;
                 }
                 else
                 {
+                    string channelName = channel.Name;
+
+                    ulong logChannelId = 771314761807691808;
+                    var logChannel = _client.GetChannel(logChannelId) as ISocketMessageChannel;
+                    
                     var author = originalMessage.Author as SocketUser;
                     var avatar = author.GetAvatarUrl(ImageFormat.Auto);
                     var defaultAvatar = author.GetDefaultAvatarUrl();
 
                     EmbedAuthorBuilder embedAuthorBuilder = new EmbedAuthorBuilder();
 
-                    embedAuthorBuilder.WithName($"Message deleted by {author.Username}#{author.Discriminator}");
+                    embedAuthorBuilder.WithName($"Message deleted by {author.Username}#{author.Discriminator} in #{channelName}");
             
                     if (avatar == null)
                     {
@@ -136,7 +146,7 @@ namespace IvyBot
                     builder.WithCurrentTimestamp();
                     builder.WithColor(Color.Blue);
 
-                    await channel.SendMessageAsync("", false, builder.Build());
+                    await logChannel.SendMessageAsync("", false, builder.Build());
                 }
             }
             catch (Exception ex)
