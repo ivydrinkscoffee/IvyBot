@@ -8,7 +8,7 @@ namespace IvyBot.Modules
     [Name("Information")]
     public class InfoModule : ModuleBase<SocketCommandContext>
     {
-        [Command("whois", RunMode = RunMode.Async)]
+        [Command("whois")]
         [Summary("Returns the information of the specified user")]
         public async Task UserInfoAsync(SocketUser user = null)
         {
@@ -40,7 +40,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync("", false, builder.Build());
         }
 
-        [Command("avatar", RunMode = RunMode.Async)]
+        [Command("avatar")]
         [Summary("Returns the avatar of the specified user")]
         public async Task AvatarAsync(SocketUser user = null)
         {
@@ -58,14 +58,14 @@ namespace IvyBot.Modules
             }
         }
 
-        [Command("membercount", RunMode = RunMode.Async)]
+        [Command("membercount")]
         [Summary("Returns the amount of users in the server")]
         public async Task GetUserCount()
         {
             await Context.Channel.SendMessageAsync($"**{Context.Guild.MemberCount}** members");
         }
 
-        [Command("serverinfo", RunMode = RunMode.Async)]
+        [Command("serverinfo")]
         [Summary("Returns the information of the server")]
         public async Task ServerInfoAsync()
         {

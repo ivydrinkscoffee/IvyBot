@@ -11,7 +11,7 @@ namespace IvyBot.Modules
     [Name("Randoms")]
     public class RandomModule : ModuleBase<SocketCommandContext>
     {
-        [Command("smug", RunMode = RunMode.Async)]
+        [Command("smug")]
         [Summary("Share your smugness")]
         public async Task SmugAsync()
         {
@@ -22,7 +22,7 @@ namespace IvyBot.Modules
             await ReplyAsync($"{smug[index]}");
         }
 
-        [Command("ratedick", RunMode = RunMode.Async)]
+        [Command("ratedick")]
         [Summary("The gay council will decide your dick's fate")]
         public async Task RateAsync()
         {
@@ -56,7 +56,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync("", false, builder.Build());
         }
 
-        [Command("duck", RunMode = RunMode.Sync)]
+        [Command("duck")]
         [Summary("Sends a random duck")]
         public async Task GetDuck()
         {
@@ -74,7 +74,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync("", false, builder.Build());
         }
 
-        [Command("dog", RunMode = RunMode.Sync)]
+        [Command("dog")]
         [Summary("Sends a random dog")]
         public async Task GetDog()
         {
@@ -92,7 +92,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync("", false, builder.Build());
         }
 
-        [Command("cat", RunMode = RunMode.Sync)]
+        [Command("cat")]
         [Summary("Sends a random cat")]
         public async Task GetCat()
         {
@@ -110,7 +110,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync("", false, builder.Build());
         }
 
-        [Command("meme", RunMode = RunMode.Sync)]
+        [Command("meme")]
         [Summary("Sends a random meme")]
         public async Task GetMeme()
         {
@@ -129,7 +129,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync("", false, builder.Build());
         }
 
-        [Command("coffee", RunMode = RunMode.Sync)]
+        [Command("coffee")]
         [Summary("You need coffee")]
         public async Task GetCoffee()
         {

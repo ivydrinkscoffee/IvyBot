@@ -8,7 +8,7 @@ namespace IvyBot.Modules
     [Name("NSFW")]
     public class NSFWModule : ModuleBase<SocketCommandContext>
     {
-        [Command("rule34", RunMode = RunMode.Async)]
+        [Command("rule34")]
         [Summary("Gets porn from rule34.xxx specified by the entered text")]
         public async Task Rule34([Remainder] string tag)
         {
@@ -26,7 +26,7 @@ namespace IvyBot.Modules
             }
         }
 
-        [Command("e621", RunMode = RunMode.Async)]
+        [Command("e621")]
         [Summary("Gets porn from e621.net specified by the entered text")]
         public async Task E621([Remainder] string tag)
         {

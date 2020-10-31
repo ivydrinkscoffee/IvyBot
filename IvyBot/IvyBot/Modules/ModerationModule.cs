@@ -23,33 +23,33 @@ namespace IvyBot.Modules
         [RequireBotPermission(GuildPermission.KickMembers)]
         [Command("prune", RunMode = RunMode.Async)]
         [Summary("Kicks users who have not been active for the amount of days specified")]
-        public Task PruneAsync(int days)
+        public async Task PruneAsync(int days)
         {
             var check = new Emoji("✅");
-            Context.Message.AddReactionAsync(check);
-            return Context.Guild.PruneUsersAsync(days);
+            await Context.Message.AddReactionAsync(check);
+            await Context.Guild.PruneUsersAsync(days);
         }
 
         [RequireUserPermission(GuildPermission.BanMembers)]
         [RequireBotPermission(GuildPermission.BanMembers)]
         [Command("ban", RunMode = RunMode.Async)]
         [Summary("Bans the specified user")]
-        public Task BanAsync(IGuildUser user, [Remainder] string reason = null)
+        public async Task BanAsync(IGuildUser user, [Remainder] string reason = null)
         {
             var check = new Emoji("✅");
-            Context.Message.AddReactionAsync(check);
-            return Context.Guild.AddBanAsync(user, 0, reason);
+            await Context.Message.AddReactionAsync(check);
+            await Context.Guild.AddBanAsync(user, 0, reason);
         }
 
         [RequireUserPermission(GuildPermission.BanMembers)]
         [RequireBotPermission(GuildPermission.BanMembers)]
         [Command("unban", RunMode = RunMode.Async)]
-        [Summary("Unbans the specified user")]
-        public Task UnbanAsync(ulong userId)
+        [Summary("Unbans the specified user from their user ID")]
+        public async Task UnbanAsync(ulong userId)
         {
             var check = new Emoji("✅");
-            Context.Message.AddReactionAsync(check);
-            return Context.Guild.RemoveBanAsync(userId);
+            await Context.Message.AddReactionAsync(check);
+            await Context.Guild.RemoveBanAsync(userId);
         }
 
         [Command("bam", RunMode = RunMode.Async)]

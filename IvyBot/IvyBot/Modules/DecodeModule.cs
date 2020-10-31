@@ -9,7 +9,7 @@ namespace IvyBot.Modules
     [Name("Decode/Encode")]
     public class DecodeModule : ModuleBase<SocketCommandContext>
     {
-        [Command("base64decode", RunMode = RunMode.Sync)]
+        [Command("base64decode")]
         [Summary("Decode the entered Base64")]
         public async Task DecodeBase64([Remainder] string base64)
         {
@@ -20,7 +20,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync(items["text"]);
         }
 
-        [Command("base64encode", RunMode = RunMode.Sync)]
+        [Command("base64encode")]
         [Summary("Encode the entered text into Base64")]
         public async Task EncodeBase64([Remainder] string text)
         {
@@ -31,7 +31,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync(items["base64"]);
         }
 
-        [Command("binarydecode", RunMode = RunMode.Sync)]
+        [Command("binarydecode")]
         [Summary("Decode the entered Binary")]
         public async Task DecodeBinary([Remainder] string binary)
         {
@@ -42,7 +42,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync(items["text"]);
         }
 
-        [Command("binaryencode", RunMode = RunMode.Sync)]
+        [Command("binaryencode")]
         [Summary("Encode the entered text into Binary")]
         public async Task EncodeBinary([Remainder] string text)
         {

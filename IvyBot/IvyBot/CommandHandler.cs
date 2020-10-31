@@ -52,10 +52,16 @@ namespace IvyBot
 
             var context = new SocketCommandContext(_client, userMessage);
             var result = await _cmdService.ExecuteAsync(context, argPos, _services);
+
+            if (result.Error != null)
+                await context.Channel.SendMessageAsync(result.ErrorReason);
         }
 
         private async Task HandleUpdatedMessageAsync(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
         {
+            ulong logChannelId = 771314761807691808;
+            var logChannel = _client.GetChannel(logChannelId) as ISocketMessageChannel;
+            
             try
             {
                 var message = await before.GetOrDownloadAsync();
@@ -67,9 +73,6 @@ namespace IvyBot
                 else
                 {
                     string channelName = channel.Name;
-                    
-                    ulong logChannelId = 771314761807691808;
-                    var logChannel = _client.GetChannel(logChannelId) as ISocketMessageChannel;
 
                     var author = after.Author as SocketUser;
                     var avatar = author.GetAvatarUrl(ImageFormat.Auto);
@@ -101,12 +104,15 @@ namespace IvyBot
             }
             catch (Exception ex)
             {
-                await channel.SendMessageAsync(ex.Message);
+                await logChannel.SendMessageAsync(ex.Message);
             }
         }
 
         private async Task HandleDeletedMessageAsync(Cacheable<IMessage, ulong> message, ISocketMessageChannel channel)
         {
+            ulong logChannelId = 771314761807691808;
+            var logChannel = _client.GetChannel(logChannelId) as ISocketMessageChannel;
+            
             try
             {
                 var originalMessage = await message.GetOrDownloadAsync();
@@ -118,9 +124,6 @@ namespace IvyBot
                 else
                 {
                     string channelName = channel.Name;
-
-                    ulong logChannelId = 771314761807691808;
-                    var logChannel = _client.GetChannel(logChannelId) as ISocketMessageChannel;
                     
                     var author = originalMessage.Author as SocketUser;
                     var avatar = author.GetAvatarUrl(ImageFormat.Auto);
@@ -151,7 +154,7 @@ namespace IvyBot
             }
             catch (Exception ex)
             {
-                await channel.SendMessageAsync(ex.Message);
+                await logChannel.SendMessageAsync(ex.Message);
             }
         }
 

@@ -13,7 +13,7 @@ using IvyBot.Configuration;
 
 namespace IvyBot
 {
-    public class IvyBotClient : ModuleBase<SocketCommandContext>
+    public class IvyBotClient
     {
         private readonly DiscordSocketClient _client;
         private readonly CommandService _cmdService;

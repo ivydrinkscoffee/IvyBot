@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System;
+using Discord.Rest;
 
 namespace IvyBot.Modules
 {
     [Name("Interaction")]
     public class InteractionModule : ModuleBase<SocketCommandContext>
     {
-        [Command("invite", RunMode = RunMode.Async)]
+        [Command("invite")]
         [Summary("DMs you and invite link so you can invite me to a server of your choice")]
         public async Task InviteAsync()
         {
@@ -19,7 +21,35 @@ namespace IvyBot.Modules
             await ReplyAsync("Check DMs");
         }
 
-        [Command("pat", RunMode = RunMode.Sync)]
+        private readonly DiscordSocketClient _client;
+
+        public InteractionModule(DiscordSocketClient client)
+        {
+            _client = client;
+        }
+        
+        [Command("getinvites")]
+        [Summary("Returns all the server invites from the specified guild through its ID")]
+        public async Task GetInviteAsync(ulong guildId)
+        {
+            try
+            {
+                var guild = _client.GetGuild(guildId);
+                var inviteList = await guild.GetInvitesAsync();
+                var inviteListWithEnumerator = inviteList as IEnumerable<RestInvite>;
+
+                foreach (var invite in inviteListWithEnumerator)
+                {
+                    await ReplyAsync(invite.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                await ReplyAsync(ex.Message);
+            }
+        }
+        
+        [Command("pat")]
         [Summary("Pat someone")]
         public async Task Pat(SocketUser user = null)
         {
@@ -32,7 +62,7 @@ namespace IvyBot.Modules
             await Context.Channel.SendMessageAsync(items["link"]); 
         }
 
-        [Command("hug", RunMode = RunMode.Sync)]
+        [Command("hug")]
         [Summary("Hug someone")]
         public async Task Hug(SocketUser user = null)
         {

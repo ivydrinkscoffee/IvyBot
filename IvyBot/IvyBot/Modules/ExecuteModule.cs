@@ -18,7 +18,7 @@ namespace IvyBot.Modules
 
         private static readonly IvyBotClient _client;
 
-        [Command("eval", RunMode = RunMode.Async)]
+        [Command("eval")]
         [Summary("Runs a C# snippet and sends the result")]
         public async Task ExecuteAsync([Remainder] string code)
         {
