@@ -35,10 +35,9 @@ namespace IvyBot.Modules
             try
             {
                 var guild = _client.GetGuild(guildId);
-                var inviteList = await guild.GetInvitesAsync();
-                var inviteListWithEnumerator = inviteList as IEnumerable<RestInvite>;
+                var inviteList = await guild.GetInvitesAsync() as IEnumerable<RestInvite>;
 
-                foreach (var invite in inviteListWithEnumerator)
+                foreach (var invite in inviteList)
                 {
                     await ReplyAsync(invite.ToString());
                 }
