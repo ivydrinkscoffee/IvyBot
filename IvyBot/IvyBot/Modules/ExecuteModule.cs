@@ -24,7 +24,7 @@ namespace IvyBot.Modules
         {
             var user = Context.User as SocketUser;
             
-            IEnumerable<string> refs = new List<string>() { "System", "System.Diagnostics", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "System.Xml", "Newtonsoft.Json", "Victoria", "Victoria.Entities" };
+            IEnumerable<string> refs = new List<string>() { "System", "System.Diagnostics", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "System.Xml", "Newtonsoft.Json" };
             
             var globals = new ScriptGlobals { client = _client };
             
