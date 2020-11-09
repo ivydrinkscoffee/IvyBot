@@ -48,7 +48,7 @@ namespace IvyBot.Modules
                 }
                 else
                 {
-                    await ReplyAsync(link)
+                    await ReplyAsync(link);
                 }
             }
             else
