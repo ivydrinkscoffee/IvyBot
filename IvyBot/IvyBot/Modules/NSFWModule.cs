@@ -9,7 +9,7 @@ namespace IvyBot.Modules
     public class NSFWModule : ModuleBase<SocketCommandContext>
     {
         [Command("rule34")]
-        [Summary("Gets porn from rule34.xxx specified by the entered text")]
+        [Summary("Gets images or videos from rule34.xxx specified by the entered text")]
         public async Task Rule34([Remainder] string tag)
         {
             var channel = Context.Channel as SocketTextChannel;
@@ -27,7 +27,7 @@ namespace IvyBot.Modules
         }
 
         [Command("e621")]
-        [Summary("Gets porn from e621.net specified by the entered text")]
+        [Summary("Gets images or videos from e621.net specified by the entered text")]
         public async Task E621([Remainder] string tag)
         {
             var channel = Context.Channel as SocketTextChannel;
@@ -35,8 +35,26 @@ namespace IvyBot.Modules
             if (channel.IsNsfw == true)
             {
                 var link = NSFWService.GetE621File(tag);
-
-                await ReplyAsync(link.Result);
+                
+                switch (link.Result)
+                {
+                    case Contains("sample"):
+                        
+                        var newLink = link.Result.Replace("sample", "");
+                        await ReplyAsync(newLink);
+                        break;
+                        
+                    case Contains("preview"):
+                        
+                        var newLink = link.Result.Replace("preview", "");
+                        await ReplyAsync(newLink);
+                        break;
+                        
+                    default: 
+                        
+                        await ReplyAsync(link.Result);
+                        break;
+                }
             }
             else
             {
