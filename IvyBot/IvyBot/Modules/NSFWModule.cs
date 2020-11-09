@@ -16,9 +16,9 @@ namespace IvyBot.Modules
 
             if (channel.IsNsfw == true)
             {
-                var link = NSFWService.GetRule34File(tag);
+                var link = await NSFWService.GetRule34File(tag);
 
-                await ReplyAsync(link.Result);
+                await ReplyAsync(link);
             }
             else
             {
@@ -34,25 +34,25 @@ namespace IvyBot.Modules
 
             if (channel.IsNsfw == true)
             {
-                var link = NSFWService.GetE621File(tag);
+                var link = await NSFWService.GetE621File(tag);
                 
-                switch (link.Result)
+                switch (link)
                 {
-                    case link.Result.Contains("sample"):
+                    case link.Contains("sample"):
                         
-                        var newLink = link.Result.Replace("sample", "");
-                        await ReplyAsync(newLink);
+                        var removeSampleFromLink = link.Replace("sample", "");
+                        await ReplyAsync(removeSampleFromLink);
                         break;
                         
-                    case link.Result.Contains("preview"):
+                    case link.Contains("preview"):
                         
-                        var newLink = link.Result.Replace("preview", "");
-                        await ReplyAsync(newLink);
+                        var removePreviewFromLink = link.Result.Replace("preview", "");
+                        await ReplyAsync(removePreviewFromLink);
                         break;
                         
                     default: 
                         
-                        await ReplyAsync(link.Result);
+                        await ReplyAsync(link);
                         break;
                 }
             }
