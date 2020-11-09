@@ -34,26 +34,21 @@ namespace IvyBot.Modules
 
             if (channel.IsNsfw == true)
             {
-                string link = await NSFWService.GetE621File(tag);
+                var link = await NSFWService.GetE621File(tag);
                 
-                switch (link)
+                if (link.Contains("sample"))
                 {
-                    case link.Contains("sample"):
-                        
-                        var removeSampleFromLink = link.Replace("sample", "");
-                        await ReplyAsync(removeSampleFromLink);
-                        break;
-                        
-                    case link.Contains("preview"):
-                        
-                        var removePreviewFromLink = link.Replace("preview", "");
-                        await ReplyAsync(removePreviewFromLink);
-                        break;
-                        
-                    default: 
-                        
-                        await ReplyAsync(link);
-                        break;
+                    var removeSampleFromLink = link.Replace("sample", "");
+                    await ReplyAsync(removeSampleFromLink);
+                }
+                else if (link.Contains("preview"))
+                {
+                    var removePreviewFromLink = link.Replace("preview", "");
+                    await ReplyAsync(removePreviewFromLink);
+                }
+                else
+                {
+                    await ReplyAsync(link)
                 }
             }
             else
