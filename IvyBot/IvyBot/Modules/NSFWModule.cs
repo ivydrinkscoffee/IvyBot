@@ -46,7 +46,7 @@ namespace IvyBot.Modules
                         
                     case link.Contains("preview"):
                         
-                        var removePreviewFromLink = link.Result.Replace("preview", "");
+                        var removePreviewFromLink = link.Replace("preview", "");
                         await ReplyAsync(removePreviewFromLink);
                         break;
                         
