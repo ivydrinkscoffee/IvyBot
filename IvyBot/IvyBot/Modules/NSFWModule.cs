@@ -34,7 +34,7 @@ namespace IvyBot.Modules
 
             if (channel.IsNsfw == true)
             {
-                var link = await NSFWService.GetE621File(tag);
+                string link = await NSFWService.GetE621File(tag);
                 
                 switch (link)
                 {
