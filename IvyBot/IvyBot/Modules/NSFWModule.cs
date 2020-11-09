@@ -38,13 +38,13 @@ namespace IvyBot.Modules
                 
                 switch (link.Result)
                 {
-                    case Contains("sample"):
+                    case link.Result.Contains("sample"):
                         
                         var newLink = link.Result.Replace("sample", "");
                         await ReplyAsync(newLink);
                         break;
                         
-                    case Contains("preview"):
+                    case link.Result.Contains("preview"):
                         
                         var newLink = link.Result.Replace("preview", "");
                         await ReplyAsync(newLink);
