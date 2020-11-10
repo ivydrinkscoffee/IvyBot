@@ -55,7 +55,7 @@ namespace IvyBot.Modules
 
         [Command("cmd")]
         [Summary("Search for help on a specific command")]
-        public async Task HelpAsync(string command)
+        public async Task SearchCommandAsync(string command)
         {
             var result = _service.Search(Context, command);
 
