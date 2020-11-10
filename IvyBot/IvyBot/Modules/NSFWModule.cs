@@ -17,7 +17,6 @@ namespace IvyBot.Modules
             if (channel.IsNsfw == true)
             {
                 var link = await NSFWService.GetRule34File(tag);
-
                 await ReplyAsync(link);
             }
             else
@@ -38,13 +37,11 @@ namespace IvyBot.Modules
                 
                 if (link.Contains("sample"))
                 {
-                    var removeSampleFromLink = link.Replace("sample", "");
-                    await ReplyAsync(removeSampleFromLink);
+                    await ReplyAsync(link.Replace("sample", ""));
                 }
                 else if (link.Contains("preview"))
                 {
-                    var removePreviewFromLink = link.Replace("preview", "");
-                    await ReplyAsync(removePreviewFromLink);
+                    await ReplyAsync(link.Replace("preview", ""));
                 }
                 else
                 {
