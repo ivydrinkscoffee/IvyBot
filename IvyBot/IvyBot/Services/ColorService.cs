@@ -33,11 +33,12 @@ namespace IvyBot.Services
 
             SocketRole role = user.Guild.Roles.Where(r => r.Name == color.Name).FirstOrDefault();
 			
-            if (role == null)
+            do
 	    {
 		await user.Guild.CreateRoleAsync(color.Name, permissions: GuildPermissions.None, color: color.Color, false, null);
                 continue;
 	    }
+            while (role == null);
 
 	    await user.AddRoleAsync(role);
             
