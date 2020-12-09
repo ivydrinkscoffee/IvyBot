@@ -8,13 +8,13 @@ namespace IvyBot.Services
 {
 	public class ColorService
 	{
-        public class ColorDef
+		public class ColorDef
 		{
 			public string Id;
 			public string Name;
 			public Color Color;
 			
-            public ColorDef(string name, Color color)
+			public ColorDef(string name, Color color)
 			{
 				Name = name;
 				Id = name.ToLowerInvariant();
@@ -24,7 +24,7 @@ namespace IvyBot.Services
         
 		public static async Task<string> SetColorAsync(SocketGuildUser user, string colorName)
 		{
-            ColorDef color;
+			ColorDef color;
 			
 			if (!ColorModule.colorMap.TryGetValue(colorName.ToLowerInvariant(), out color))
 			{
