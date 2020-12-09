@@ -64,7 +64,7 @@ namespace IvyBot.Modules
         [Summary("Sends the latest pchtxt for Splatoon 2")]
         public async Task SendPatchesAsync()
         {
-            var filestream = WebRequest.Create("https://cdn.discordapp.com/attachments/742845108424278027/770931426442084362/5.3.1public.pchtxt");
+            var filestream = WebRequest.Create("https://splatoon-hackers.github.io/5.3.1public.pchtxt");
             Stream stream = filestream.GetResponse().GetResponseStream();
             await Context.Channel.SendFileAsync(stream, "5.3.1public.pchtxt");
         }

@@ -2,6 +2,7 @@ using Discord;
 using Discord.Commands;
 using System.Linq;
 using System.Threading.Tasks;
+using IvyBot.Configuration;
 
 namespace IvyBot.Modules
 {
@@ -9,17 +10,19 @@ namespace IvyBot.Modules
     public class HelpModule : ModuleBase<SocketCommandContext>
     {
         private readonly CommandService _service;
+        private readonly IConfiguration _config;
 
-        public HelpModule(CommandService service)
+        public HelpModule(CommandService service, IConfiguration config)
         {
             _service = service;
+            _config = config;
         }
 
         [Command("help")]
         [Summary("Sends a message with all the available commands that you can use")]
         public async Task HelpAsync()
         {
-            string prefix = ".";
+            string prefix = _config.GetValueFor(Constants.BotPrefix);
             var builder = new EmbedBuilder()
             {
                 Color = Color.Blue,

@@ -48,6 +48,8 @@ namespace IvyBot
         {
             await _client.LoginAsync(TokenType.Bot, _config.GetValueFor(Constants.BotToken));
 
+            await _client.SetStatusAsync(UserStatus.Idle);
+            
             _timer = new Timer(async _ =>
             {
                 await _client.SetGameAsync(_statusList.ElementAtOrDefault(_statusIndex), type: ActivityType.Listening);

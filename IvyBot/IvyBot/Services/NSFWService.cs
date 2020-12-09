@@ -32,11 +32,11 @@ namespace IvyBot.Services
         {
             try
             {
-                var headers = new Dictionary<string,string> { {"User-Agent", "ivy-bot/4.3 (https://github.com/Ivy-Wusky/ivy-bot)"} };
+                var headers = new Dictionary<string,string> { {"User-Agent", "ivy-bot/4.4 (https://github.com/Ivy-Wusky/ivy-bot)"} };
                 
                 var random = new Random();
                 string reference = @"""url""";
-                var url = $"http://e621.net/posts.json?limit=100&tags={tag.Replace(" ", "_")}";
+                var url = $"http://e621.net/posts.json?limit=100&tags={tag.Replace(" ", "&")}";
                 var webpage = await SearchService.GetResponseStringAsync(url, headers);
                 var matches = Regex.Matches(webpage, $"{reference}:\"(?<url>.*?)\"");
                 

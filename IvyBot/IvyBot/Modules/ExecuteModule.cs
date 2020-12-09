@@ -18,6 +18,7 @@ namespace IvyBot.Modules
 
         private static readonly IvyBotClient _client;
 
+        [RequireOwner]
         [Command("eval")]
         [Summary("Runs a C# snippet and sends the result")]
         public async Task ExecuteAsync([Remainder] string code)
@@ -33,32 +34,25 @@ namespace IvyBot.Modules
                 .AddImports(refs);
             
             var text = code.Trim('`');
-
-            if (user.Id == 636502606029651998)
+            
+            try
             {
-                try
-                {
-                    var script = CSharpScript.Create(text, options, typeof(ScriptGlobals));
-                    var scriptState = await script.RunAsync(globals);
-                    var returnValue = scriptState.ReturnValue;
+                var script = CSharpScript.Create(text, options, typeof(ScriptGlobals));
+                var scriptState = await script.RunAsync(globals);
+                var returnValue = scriptState.ReturnValue;
 
-                    if (returnValue != null)
-                    {
-                        await Context.Channel.SendMessageAsync($"```cs\n{returnValue.ToString()}\n```");
-                    }
-                    else
-                    {
-                        await Context.Channel.SendMessageAsync("An unkown error occured while attempting to run the script");
-                    }
-                }
-                catch (Exception ex)
+                if (returnValue != null)
                 {
-                    await Context.Channel.SendMessageAsync($"```cs\n{ex.Message}\n```");
+                    await Context.Channel.SendMessageAsync($"```cs\n{returnValue.ToString()}\n```");
+                }
+                else
+                {
+                    await Context.Channel.SendMessageAsync("An unkown error occured while attempting to run the script");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                await ReplyAsync("Only the **owner** of the bot can use this command");
+                await Context.Channel.SendMessageAsync($"```cs\n{ex.Message}\n```");
             }
         }
     }
