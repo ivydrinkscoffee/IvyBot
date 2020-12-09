@@ -6,43 +6,44 @@ using IvyBot.Modules;
 
 namespace IvyBot.Services
 {
-    public class ColorService
-    {
-        public class ColorDef
+	public class ColorService
 	{
-	    public string Id;
-	    public string Name;
-	    public Color Color;
+        public class ColorDef
+		{
+			public string Id;
+			public string Name;
+			public Color Color;
 			
             public ColorDef(string name, Color color)
-	    {
-	        Name = name;
-	        Id = name.ToLowerInvariant();
-	        Color = color;
-	    }
-	}
+			{
+				Name = name;
+				Id = name.ToLowerInvariant();
+				Color = color;
+			}
+		}
         
-        public static async Task<string> SetColorAsync(SocketGuildUser user, string colorName)
-        {
+		public static async Task<string> SetColorAsync(SocketGuildUser user, string colorName)
+		{
             ColorDef color;
 			
-            if (!ColorModule.colorMap.TryGetValue(colorName.ToLowerInvariant(), out color))
-	    {
-		return "Unknown color";
-	    }
+			if (!ColorModule.colorMap.TryGetValue(colorName.ToLowerInvariant(), out color))
+			{
+				return "Unknown color";
+			}
 
-            SocketRole role = user.Guild.Roles.Where(r => r.Name == color.Name).FirstOrDefault();
-			
-            do
-	    {
-		await user.Guild.CreateRoleAsync(color.Name, permissions: GuildPermissions.None, color: color.Color, false, null);
-                continue;
-	    }
-            while (role == null);
+			SocketRole role = user.Guild.Roles.Where(r => r.Name == color.Name).FirstOrDefault();
 
-	    await user.AddRoleAsync(role);
+			if (role == null)
+			{
+				var newRole = await user.Guild.CreateRoleAsync(color.Name, permissions: GuildPermissions.None, color: color.Color, false, null);
+				await user.AddRoleAsync(newRole);
+
+				return $"Set **{user.ToString()}**'s color role to **{color.Name}**";
+			}
+
+			await user.AddRoleAsync(role);
             
-            return $"Set **{user.ToString()}**'s color role to **{color.Name}**";
-        }
-    }
+			return $"Set **{user.ToString()}**'s color role to **{color.Name}**";
+		}
+	}
 }
