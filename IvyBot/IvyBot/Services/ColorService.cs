@@ -36,6 +36,7 @@ namespace IvyBot.Services
             if (role == null)
 	    {
 		await user.Guild.CreateRoleAsync(color.Name, permissions: GuildPermissions.None, color: color.Color, false, null);
+                continue;
 	    }
 
 	    await user.AddRoleAsync(role);
