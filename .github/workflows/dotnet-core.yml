@@ -25,7 +25,7 @@ jobs:
       run: dotnet test IvyBot/IvyBot/IvyBot.csproj --no-restore --verbosity normal
     - name: Publish
       run: dotnet publish IvyBot/IvyBot/IvyBot.csproj
-    - name: Upload Build Artifact
+    - name: Upload build artifact
       uses: actions/upload-artifact@v2
       with:
         name: ivy-bot
