@@ -30,10 +30,16 @@ namespace IvyBot.Modules
                 new ColorService.ColorDef("DarkBlue", Color.DarkBlue),
                 new ColorService.ColorDef("DarkTeal", Color.DarkTeal),
                 new ColorService.ColorDef("DarkGreen", Color.DarkGreen),
+                new ColorService.ColorDef("DarkGrey", Color.DarkGrey),
                 new ColorService.ColorDef("DarkMagenta", Color.DarkMagenta),
                 new ColorService.ColorDef("DarkOrange", Color.DarkOrange),
                 new ColorService.ColorDef("DarkPurple", Color.DarkPurple),
                 new ColorService.ColorDef("DarkRed", Color.DarkRed),
+                new ColorService.ColorDef("DarkerGrey", Color.DarkerGrey),
+                new ColorService.ColorDef("LightGrey", Color.LightGrey),
+                new ColorService.ColorDef("LightOrange", Color.LightOrange),
+                new ColorService.ColorDef("LighterGrey", Color.LighterGrey),
+                new ColorService.ColorDef("Default", Color.Default),
             };
             
             colorMap = colors.ToDictionary(c => c.Id);

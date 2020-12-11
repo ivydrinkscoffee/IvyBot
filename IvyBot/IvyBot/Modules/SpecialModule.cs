@@ -3,6 +3,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Net;
 using System;
+using System.Collections.Generic;
+using IvyBot.Services;
 
 namespace IvyBot.Modules
 {
@@ -60,16 +62,25 @@ namespace IvyBot.Modules
             }
         }
         
-        [Command("531public")]
-        [Summary("Sends the latest pchtxt for Splatoon 2")]
-        public async Task SendPatchesAsync()
+        [Command("pchtxt")]
+        [Summary("Sends the specified pchtxt for Splatoon 2")]
+        public async Task SendPatchesAsync([Remainder] string version)
         {
-            var filestream = WebRequest.Create("https://splatoon-hackers.github.io/5.3.1public.pchtxt");
-            Stream stream = filestream.GetResponse().GetResponseStream();
-            await Context.Channel.SendFileAsync(stream, "5.3.1public.pchtxt");
+            IEnumerable<string> versionList = new List<string>() { "5.0.0", "5.0.1", "5.1.0", "5.2.0", "5.2.1", "5.2.2", "5.3.0", "5.3.1" };
+
+            if (StringService.EqualsAny(version, versionList) == false)
+            {
+                await ReplyAsync("Game version not supported");
+            }
+            else
+            {
+                var filestream = WebRequest.Create($"https://splatoon-hackers.github.io/{version}public.pchtxt");
+                Stream stream = filestream.GetResponse().GetResponseStream();
+                await Context.Channel.SendFileAsync(stream, $"{version}public.pchtxt");
+            }
         }
 
-        [Command("310starlion")]
+        [Command("starlion")]
         [Summary("Sends the latest public Starlion for Splatoon 2")]
         public async Task SendStarlionAsync()
         {

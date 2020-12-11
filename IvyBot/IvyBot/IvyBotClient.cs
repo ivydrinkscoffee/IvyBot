@@ -22,6 +22,7 @@ namespace IvyBot
         private readonly IConfiguration _config;
         private Timer _timer;
         private readonly List<string> _statusList = new List<string>() { "music | .play", "people | .help" };
+        // private readonly List<string> _statusList = new List<string>() { $"music | {_config.GetValueFor(Constants.BotPrefix)}play", $"people | {_config.GetValueFor(Constants.BotPrefix)}help" };
         private int _statusIndex = 0;
 
         public IvyBotClient()
