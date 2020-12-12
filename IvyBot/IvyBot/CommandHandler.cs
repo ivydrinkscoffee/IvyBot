@@ -54,7 +54,17 @@ namespace IvyBot
             var result = await _cmdService.ExecuteAsync(context, argPos, _services);
 
             if (result.Error != null)
-                await context.Channel.SendMessageAsync(result.ErrorReason);
+            {
+                switch (result.Error)
+                {
+                    case CommandError.UnknownCommand:
+                        return;
+                    
+                    default:
+                        await context.Channel.SendMessageAsync(result.ErrorReason);
+                        break;
+                }
+            }
         }
 
         private async Task HandleUpdatedMessageAsync(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
