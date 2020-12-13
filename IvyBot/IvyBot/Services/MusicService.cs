@@ -1,4 +1,5 @@
-﻿using Discord;
+﻿/*
+using Discord;
 using Discord.WebSocket;
 using System.Linq;
 using System.Threading.Tasks;
@@ -55,7 +56,7 @@ namespace IvyBot.Services
 
             if (results.LoadType == LoadType.NoMatches || results.LoadType == LoadType.LoadFailed)
             {
-                return "No matches found";
+                return "<:xmark:314349398824058880> No matches found";
             }
 
             var track = results.Tracks.FirstOrDefault();
@@ -63,12 +64,12 @@ namespace IvyBot.Services
             if (_player.IsPlaying)
             {
                 _player.Queue.Enqueue(track);
-                return $"**{track.Title}** has been added to the queue";
+                return $"<:youtube:314349922885566475> **{track.Title}** has been added to the queue";
             }
             else
             {
                 await _player.PlayAsync(track);
-                return $"Now playing **{track.Title}**";
+                return $"<:youtube:314349922885566475> Now playing **{track.Title}**";
             }
         }
 
@@ -76,52 +77,52 @@ namespace IvyBot.Services
         {
             var _player = _lavaSocketClient.GetPlayer(guildId);
             if (_player is null)
-                return "Error with player";
+                return "<:xmark:314349398824058880> Error with player";
             await _player.StopAsync();
-            return "Music playback stopped";
+            return "<:muted:585767366722584576> Music playback stopped";
         }
 
         public async Task<string> SkipAsync(ulong guildId)
         {
             var _player = _lavaSocketClient.GetPlayer(guildId);
             if (_player is null || _player.Queue.Items.Count() is 0)
-                return "Nothing in queue";
+                return "<:empty:314349398723264512> Nothing in queue";
 
             var oldTrack = _player.CurrentTrack;
             await _player.SkipAsync();
-            return $"Skipped **{oldTrack.Title}**\nNow playing **{_player.CurrentTrack.Title}**";
+            return $"<:join_arrow:599612545002635274> Skipped **{oldTrack.Title}**\n<:youtube:314349922885566475> Now playing **{_player.CurrentTrack.Title}**";
         }
 
         public async Task<string> SetVolumeAsync(int vol, ulong guildId)
         {
             var _player = _lavaSocketClient.GetPlayer(guildId);
             if (_player is null)
-                return "Player isn't playing";
+                return "<:muted:585767366722584576> Player isn't playing";
 
             if (vol > 150 || vol <= 2)
             {
-                return "Please use a number between **2 - 150**";
+                return "<:xmark:314349398824058880> Please use a number between **2 - 150**";
             }
 
             await _player.SetVolumeAsync(vol);
-            return $"Volume set to **{vol}**";
+            return $"<:check:314349398811475968> Volume set to **{vol}**";
         }
 
         public async Task<string> PauseOrResumeAsync(ulong guildId)
         {
             var _player = _lavaSocketClient.GetPlayer(guildId);
             if (_player is null)
-                return "Player isn't playing";
+                return "<:muted:585767366722584576> Player isn't playing";
 
             if (!_player.IsPaused)
             {
                 await _player.PauseAsync();
-                return "Player is paused";
+                return "<:slowmode:585790802979061760> Player is paused";
             }
             else
             {
                 await _player.ResumeAsync();
-                return "Playback resumed";
+                return "<:unmuted:585788304210001920> Playback resumed";
             }
         }
 
@@ -129,15 +130,15 @@ namespace IvyBot.Services
         {
             var _player = _lavaSocketClient.GetPlayer(guildId);
             if (_player is null)
-                return "Player isn't playing";
+                return "<:muted:585767366722584576> Player isn't playing";
 
             if (_player.IsPaused)
             {
                 await _player.ResumeAsync();
-                return "Playback resumed";
+                return "<:unmuted:585788304210001920> Playback resumed";
             }
 
-            return "Player is not paused";
+            return "<:xmark:314349398824058880> Player is not paused";
         }
 
         public async Task ClientReadyAsync()
@@ -158,7 +159,7 @@ namespace IvyBot.Services
 
             if (!player.Queue.TryDequeue(out var item) || !(item is LavaTrack nextTrack))
             {
-                await player.TextChannel.SendMessageAsync("There are no more tracks in the queue");
+                await player.TextChannel.SendMessageAsync("<:empty:314349398723264512> There are no more tracks in the queue");
                 return;
             }
 
@@ -171,3 +172,4 @@ namespace IvyBot.Services
         }
     }
 }
+*/

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,7 +48,7 @@ namespace IvyBot.Modules
         [Summary("Gives a list of all available color roles")]
         public async Task ColorListAsync()
         {
-            string list = $"**Available colors:**\n" + string.Join(", ", colors.Select(c => '`' + c.Name + '`'));
+            string list = $"<:invite:658538493949116428> Available colors:\n" + string.Join(", ", colors.Select(c => '`' + c.Name + '`'));
             
             await ReplyAsync(list);
         }
@@ -71,7 +70,7 @@ namespace IvyBot.Modules
                 
             await (Context.User as SocketGuildUser).RemoveRolesAsync(colorRoles);
 
-            await ReplyAsync("Removed all your current color roles, you may have not assigned any, but this will have no effect on the other roles that you have, if you do have them");
+            await ReplyAsync("<:check:314349398811475968> Removed all your current color roles, you may have not assigned any, but this will have no effect on the other roles that you have, if you do have them");
         }
 
         [RequireUserPermission(GuildPermission.ManageRoles)]

@@ -64,7 +64,7 @@ namespace IvyBot.Modules
 
             if (!result.IsSuccess)
             {
-                await ReplyAsync($"A command like **{command}** was not found");
+                await ReplyAsync($"<:xmark:314349398824058880> A command like **{command}** was not found");
                 return;
             }
 

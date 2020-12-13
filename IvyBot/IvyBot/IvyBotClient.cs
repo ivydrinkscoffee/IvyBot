@@ -21,7 +21,7 @@ namespace IvyBot
         private readonly LogService _logService;
         private readonly IConfiguration _config;
         private Timer _timer;
-        private readonly List<string> _statusList = new List<string>() { "music | .play", "people | .help" };
+        private readonly List<string> _statusList = new List<string>() { "people inviting me | .invite", "people needing help | .help" };
         private int _statusIndex = 0;
 
         public IvyBotClient()
@@ -66,7 +66,7 @@ namespace IvyBot
             var cmdHandler = new CommandHandler(_client, _cmdService, _services, _config, _logService);
             await cmdHandler.InitializeAsync();
 
-            await _services.GetRequiredService<MusicService>().InitializeAsync();
+            // await _services.GetRequiredService<MusicService>().InitializeAsync();
             
             await Task.Delay(-1);
         }
@@ -82,9 +82,9 @@ namespace IvyBot
             .AddSingleton(_cmdService)
             .AddSingleton(_logService)
             .AddSingleton(_config)
-            .AddSingleton<LavaRestClient>()
-            .AddSingleton<LavaSocketClient>()
-            .AddSingleton<MusicService>()
+            // .AddSingleton<LavaRestClient>()
+            // .AddSingleton<LavaSocketClient>()
+            // .AddSingleton<MusicService>()
             .BuildServiceProvider();
     }
 }

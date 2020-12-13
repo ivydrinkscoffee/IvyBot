@@ -29,10 +29,12 @@ namespace IvyBot
         public async Task InitializeAsync()
         {
             await _cmdService.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
+            
             _cmdService.Log += LogAsync;
             _client.MessageReceived += HandleMessageAsync;
-            _client.MessageUpdated += HandleUpdatedMessageAsync;
-            _client.MessageDeleted += HandleDeletedMessageAsync;
+            
+            // _client.MessageUpdated += HandleUpdatedMessageAsync;
+            // _client.MessageDeleted += HandleDeletedMessageAsync;
         }
 
         private async Task HandleMessageAsync(SocketMessage socketMessage)
@@ -58,15 +60,18 @@ namespace IvyBot
                 switch (result.Error)
                 {
                     case CommandError.UnknownCommand:
+                        
                         return;
                     
                     default:
-                        await context.Channel.SendMessageAsync(result.ErrorReason);
+                        
+                        await context.Channel.SendMessageAsync($"<:xmark:314349398824058880> {result.ErrorReason}");
                         break;
                 }
             }
         }
 
+        /*
         private async Task HandleUpdatedMessageAsync(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
         {
             ulong logChannelId = 771314761807691808;
@@ -167,6 +172,7 @@ namespace IvyBot
                 await logChannel.SendMessageAsync(ex.Message);
             }
         }
+        */
 
         private async Task LogAsync(LogMessage logMessage)
         {

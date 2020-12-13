@@ -1,4 +1,5 @@
-﻿using Discord;
+﻿/*
+using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using IvyBot.Services;
@@ -26,13 +27,13 @@ namespace DiscordBot.Modules
             var user = Context.User as SocketGuildUser;
             if (user.VoiceChannel is null)
             {
-                await ReplyAsync("You need to connect to a voice channel");
+                await ReplyAsync("<:voice_locked:585783907488628797> You need to connect to a voice channel");
                 return;
             }
             else
             {
                 await _musicService.ConnectAsync(user.VoiceChannel, Context.Channel as ITextChannel);
-                await ReplyAsync($"Now connected to **{user.VoiceChannel.Name}**");
+                await ReplyAsync($"<:voice:585783907673440266> Now connected to **{user.VoiceChannel.Name}**");
             }
         }
 
@@ -43,12 +44,12 @@ namespace DiscordBot.Modules
             var user = Context.User as SocketGuildUser;
             if (user.VoiceChannel is null)
             {
-                await ReplyAsync("Please join the voice channel I am in to make me leave");
+                await ReplyAsync("<:voice_locked:585783907488628797> Please join the voice channel I am in to have me leave");
             }
             else
             {
                 await _musicService.LeaveAsync(user.VoiceChannel);
-                await ReplyAsync($"I have now left **{user.VoiceChannel.Name}**");
+                await ReplyAsync($"<:voice:585783907673440266> I have now left **{user.VoiceChannel.Name}**");
             }
         }
 
@@ -84,3 +85,4 @@ namespace DiscordBot.Modules
             => await ReplyAsync(await _musicService.ResumeAsync(Context.Guild.Id));
     }
 }
+*/

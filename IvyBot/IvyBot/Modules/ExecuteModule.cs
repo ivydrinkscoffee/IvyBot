@@ -47,7 +47,7 @@ namespace IvyBot.Modules
                 }
                 else
                 {
-                    await Context.Channel.SendMessageAsync("An unkown error occured while attempting to run the script");
+                    await Context.Channel.SendMessageAsync("<:xmark:314349398824058880> An unkown error occured while attempting to run the script");
                 }
             }
             catch (Exception ex)

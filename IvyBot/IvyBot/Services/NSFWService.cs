@@ -17,14 +17,14 @@ namespace IvyBot.Services
                 var matches = Regex.Matches(webpage, "file_url=\"(?<url>.*?)\"");
                 
                 if (matches.Count == 0)
-                    return "No results found";
+                    return "<:empty:314349398723264512> No results found";
                 
                 var match = matches[random.Next(0, matches.Count)];
                 return matches[random.Next(0, matches.Count)].Groups["url"].Value;
             }
             catch (Exception ex)
             {
-                return $"Error in Rule34 search: {ex.Message}";
+                return $"<:xmark:314349398824058880> Error in Rule34 search: {ex.Message}";
             }
         }
 
@@ -41,14 +41,14 @@ namespace IvyBot.Services
                 var matches = Regex.Matches(webpage, $"{reference}:\"(?<url>.*?)\"");
                 
                 if (matches.Count == 0)
-                    return "No results found";
+                    return "<:empty:314349398723264512> No results found";
                 
                 var match = matches[random.Next(0, matches.Count)];
                 return matches[random.Next(0, matches.Count)].Groups["url"].Value;
             }
             catch (Exception ex)
             {
-                return $"Error in E621 search: {ex.Message}";
+                return $"<:xmark:314349398824058880> Error in E621 search: {ex.Message}";
             }
         }
     }

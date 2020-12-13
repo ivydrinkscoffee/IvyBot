@@ -70,7 +70,7 @@ namespace IvyBot.Modules
 
             if (StringService.EqualsAny(version, versionList) == false)
             {
-                await ReplyAsync("Game version not supported");
+                await ReplyAsync("<:xmark:314349398824058880> Game version not supported");
             }
             else
             {
