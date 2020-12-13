@@ -36,7 +36,8 @@ namespace IvyBot
             _cmdService = new CommandService(new CommandServiceConfig
             {
                 LogLevel = LogSeverity.Verbose,
-                CaseSensitiveCommands = false
+                CaseSensitiveCommands = false,
+                DefaultRunMode = RunMode.Async
             });
 
             _logService = new LogService();

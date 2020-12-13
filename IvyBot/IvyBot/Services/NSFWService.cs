@@ -35,10 +35,9 @@ namespace IvyBot.Services
                 var headers = new Dictionary<string,string> { {"User-Agent", "ivy-bot/5.1 (https://github.com/Ivy-Wusky/ivy-bot)"} };
                 
                 var random = new Random();
-                string reference = @"""url""";
                 var url = $"http://e621.net/posts.json?limit=100&tags={tag.Replace(" ", "&")}";
                 var webpage = await SearchService.GetResponseStringAsync(url, headers);
-                var matches = Regex.Matches(webpage, $"{reference}:\"(?<url>.*?)\"");
+                var matches = Regex.Matches(webpage, @"""url"":""(?<url>.*?)""");
                 
                 if (matches.Count == 0)
                     return "<:empty:314349398723264512> No results found";

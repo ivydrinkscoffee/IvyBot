@@ -50,7 +50,7 @@ namespace IvyBot.Modules
             }
 
             builder.WithCurrentTimestamp();
-            builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
+            builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.Net");
             builder.WithColor(Color.Blue);
 
             await Context.Channel.SendMessageAsync("", false, builder.Build());

@@ -48,7 +48,7 @@ namespace IvyBot.Modules
                         _field.IsInline = false;
                     });
 
-                    builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.NET");
+                    builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.Net");
                     builder.WithCurrentTimestamp();
                 }
             }
@@ -58,7 +58,7 @@ namespace IvyBot.Modules
 
         [Command("cmd")]
         [Summary("Search for help on a specific command")]
-        public async Task SearchCommandAsync(string command)
+        public async Task SearchCommandAsync([Remainder] string command)
         {
             var result = _service.Search(Context, command);
 
@@ -79,8 +79,8 @@ namespace IvyBot.Modules
 
                 builder.AddField(_field =>
                 {
-                    _field.Name = string.Join(", ", cmd.Aliases);
-                    _field.Value = $"{cmd.Summary}";
+                    _field.Name = $"Command(s): {string.Join(", ", cmd.Aliases)}";
+                    _field.Value = $"Description: {cmd.Summary}\nParameters: {string.Join(", ", cmd.Parameters.Select(p => p.Name))}";
                     _field.IsInline = false;
                 });
 
