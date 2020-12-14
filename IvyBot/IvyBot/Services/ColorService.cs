@@ -28,7 +28,7 @@ namespace IvyBot.Services
             
             if (!ColorModule.colorMap.TryGetValue(colorName.ToLowerInvariant(), out color))
             {
-                return "<:empty:314349398723264512> Color not found";
+                return "<:xmark:314349398824058880> Color not found";
             }
 
             SocketRole role = user.Guild.Roles.Where(r => r.Name == color.Name).FirstOrDefault();
