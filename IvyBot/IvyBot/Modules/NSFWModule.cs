@@ -10,7 +10,7 @@ namespace IvyBot.Modules
         [RequireNsfw]
         [Command("rule34")]
         [Summary("Gets images or videos from rule34.xxx specified by the entered text")]
-        public async Task Rule34([Remainder] string tag)
+        public async Task Rule34Async([Remainder] string tag)
         {
             await ReplyAsync(NSFWService.GetRule34File(tag).Result);
         }
@@ -18,7 +18,7 @@ namespace IvyBot.Modules
         [RequireNsfw]
         [Command("e621")]
         [Summary("Gets images or videos from e621.net specified by the entered text")]
-        public async Task E621([Remainder] string tag)
+        public async Task E621Async([Remainder] string tag)
         {
             var link = await NSFWService.GetE621File(tag);
                 

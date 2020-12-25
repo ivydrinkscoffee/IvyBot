@@ -70,7 +70,8 @@ namespace IvyBot.Modules
                 
             await (Context.User as SocketGuildUser).RemoveRolesAsync(colorRoles);
 
-            await ReplyAsync("<:check:314349398811475968> Removed all your current color roles, you may have not assigned any, but this will have no effect on the other roles that you have, if you do have them");
+            var check = new Emoji("✅");
+            await Context.Message.AddReactionAsync(check);
         }
 
         [RequireUserPermission(GuildPermission.ManageRoles)]

@@ -23,8 +23,6 @@ namespace IvyBot.Modules
         [Summary("Runs a C# snippet and sends the result")]
         public async Task ExecuteAsync([Remainder] string code)
         {
-            var user = Context.User as SocketUser;
-            
             IEnumerable<string> refs = new List<string>() { "System", "System.Diagnostics", "System.Collections.Generic", "System.Linq", "System.Net", "System.Net.Http", "System.IO", "System.Threading.Tasks", "System.Xml", "Newtonsoft.Json" };
             
             var globals = new ScriptGlobals { client = _client };
@@ -43,16 +41,16 @@ namespace IvyBot.Modules
 
                 if (returnValue != null)
                 {
-                    await Context.Channel.SendMessageAsync($"```cs\n{returnValue.ToString()}\n```");
+                    await ReplyAsync($"```cs\n{returnValue.ToString()}\n```");
                 }
                 else
                 {
-                    await Context.Channel.SendMessageAsync("<:xmark:314349398824058880> An unkown error occured while attempting to run the script");
+                    await ReplyAsync("<:xmark:314349398824058880> An unkown error occured while attempting to run the script");
                 }
             }
             catch (Exception ex)
             {
-                await Context.Channel.SendMessageAsync($"```cs\n{ex.Message}\n```");
+                await ReplyAsync($"```cs\n{ex.Message}\n```");
             }
         }
     }

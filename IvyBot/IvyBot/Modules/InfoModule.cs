@@ -27,7 +27,7 @@ namespace IvyBot.Modules
             builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.Net");
             builder.WithColor(Color.Blue);
 
-            await Context.Channel.SendMessageAsync("", false, builder.Build());
+            await ReplyAsync(null, false, builder.Build());
         }
 
         [Command("avatar")]
@@ -37,14 +37,14 @@ namespace IvyBot.Modules
             var userInfo = user ?? Context.User;
             var avatar = userInfo.GetAvatarUrl(ImageFormat.Auto) ?? userInfo.GetDefaultAvatarUrl();
             
-            await Context.Channel.SendMessageAsync(avatar);
+            await ReplyAsync(avatar);
         }
 
         [Command("membercount")]
         [Summary("Returns the amount of users in the server")]
         public async Task GetUserCount()
         {
-            await Context.Channel.SendMessageAsync($"**{Context.Guild.MemberCount}** members");
+            await ReplyAsync($"**{Context.Guild.MemberCount}** members");
         }
 
         [Command("serverinfo")]
@@ -66,7 +66,7 @@ namespace IvyBot.Modules
             builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.Net");
             builder.WithColor(Color.Blue);
 
-            await Context.Channel.SendMessageAsync("", false, builder.Build());
+            await ReplyAsync(null, false, builder.Build());
         }
     }
 }

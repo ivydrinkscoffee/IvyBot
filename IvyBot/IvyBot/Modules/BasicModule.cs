@@ -9,21 +9,21 @@ namespace IvyBot.Modules
 
         [Command("stonks")]
         [Summary("Get stonks")]
-        public async Task Stonks()
+        public async Task StonksAsync()
         {
             await ReplyAsync("https://tenor.com/view/stonks-up-stongs-meme-stocks-gif-15715298");
         }
 
         [Command("notstonks")]
         [Summary("Lose stonks")]
-        public async Task NotStonks()
+        public async Task NotStonksAsync()
         {
             await ReplyAsync("https://tenor.com/view/not-stonks-profit-down-sad-frown-arms-crossed-gif-15684535");
         }
 
         [Command("obama")]
         [Summary("Embrace the Obama")]
-        public async Task Obama()
+        public async Task ObamaAsync()
         {
             await ReplyAsync("https://tenor.com/view/obama-prism-politics-triangle-illuminati-gif-16608552");
         }

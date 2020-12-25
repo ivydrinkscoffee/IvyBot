@@ -17,7 +17,7 @@ namespace IvyBot.Modules
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-            await Context.Channel.SendMessageAsync(items["text"]);
+            await ReplyAsync(items["text"]);
         }
 
         [Command("base64encode")]
@@ -28,7 +28,7 @@ namespace IvyBot.Modules
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-            await Context.Channel.SendMessageAsync(items["base64"]);
+            await ReplyAsync(items["base64"]);
         }
 
         [Command("binarydecode")]
@@ -39,7 +39,7 @@ namespace IvyBot.Modules
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-            await Context.Channel.SendMessageAsync(items["text"]);
+            await ReplyAsync(items["text"]);
         }
 
         [Command("binaryencode")]
@@ -50,7 +50,7 @@ namespace IvyBot.Modules
             
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-            await Context.Channel.SendMessageAsync(items["binary"]);
+            await ReplyAsync(items["binary"]);
         }
     }
 }

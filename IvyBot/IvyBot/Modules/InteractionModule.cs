@@ -28,8 +28,8 @@ namespace IvyBot.Modules
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-            await Context.Channel.SendMessageAsync("*pats* " + $"*{userInfo.Mention}*");
-            await Context.Channel.SendMessageAsync(items["link"]); 
+            await ReplyAsync("*pats* " + $"*{userInfo.Mention}*");
+            await ReplyAsync(items["link"]); 
         }
 
         [Command("hug")]
@@ -41,8 +41,8 @@ namespace IvyBot.Modules
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-            await Context.Channel.SendMessageAsync("*hugs* " + $"*{userInfo.Mention}*");
-            await Context.Channel.SendMessageAsync(items["link"]); 
+            await ReplyAsync("*hugs* " + $"*{userInfo.Mention}*");
+            await ReplyAsync(items["link"]);
         }
     }
 }

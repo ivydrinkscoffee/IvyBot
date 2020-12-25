@@ -53,12 +53,12 @@ namespace IvyBot.Modules
             builder.WithFooter("Coded and maintained by Ivy#9804 in Discord.Net");
             builder.WithColor(Color.Blue);
 
-            await Context.Channel.SendMessageAsync("", false, builder.Build());
+            await ReplyAsync(null, false, builder.Build());
         }
 
         [Command("duck")]
         [Summary("Sends a random duck")]
-        public async Task GetDuck()
+        public async Task GetDuckAsync()
         {
             string json = new WebClient().DownloadString("https://random-d.uk/api/random");
 
@@ -71,12 +71,12 @@ namespace IvyBot.Modules
             builder.WithCurrentTimestamp();
             builder.WithColor(Color.Blue);
 
-            await Context.Channel.SendMessageAsync("", false, builder.Build());
+            await ReplyAsync(null, false, builder.Build());
         }
 
         [Command("dog")]
         [Summary("Sends a random dog")]
-        public async Task GetDog()
+        public async Task GetDogAsync()
         {
             string json = new WebClient().DownloadString("https://random.dog/woof.json");
 
@@ -89,12 +89,12 @@ namespace IvyBot.Modules
             builder.WithCurrentTimestamp();
             builder.WithColor(Color.Blue);
 
-            await Context.Channel.SendMessageAsync("", false, builder.Build());
+            await ReplyAsync(null, false, builder.Build());
         }
 
         [Command("cat")]
         [Summary("Sends a random cat")]
-        public async Task GetCat()
+        public async Task GetCatAsync()
         {
             string json = new WebClient().DownloadString("http://aws.random.cat//meow");
 
@@ -107,12 +107,12 @@ namespace IvyBot.Modules
             builder.WithCurrentTimestamp();
             builder.WithColor(Color.Blue);
 
-            await Context.Channel.SendMessageAsync("", false, builder.Build());
+            await ReplyAsync(null, false, builder.Build());
         }
 
         [Command("meme")]
         [Summary("Sends a random meme")]
-        public async Task GetMeme()
+        public async Task GetMemeAsync()
         {
             string json = new WebClient().DownloadString("https://some-random-api.ml/meme");
 
@@ -131,7 +131,7 @@ namespace IvyBot.Modules
 
         [Command("coffee")]
         [Summary("You need coffee")]
-        public async Task GetCoffee()
+        public async Task GetCoffeeAsync()
         {
             string json = new WebClient().DownloadString("https://coffee.alexflipnote.dev/random.json");
 

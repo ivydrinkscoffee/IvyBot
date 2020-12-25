@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using IvyBot.Services;
 
 namespace IvyBot.Modules
@@ -19,7 +21,27 @@ namespace IvyBot.Modules
             Stream stream = filestream.GetResponse().GetResponseStream();
             await Context.Channel.SendFileAsync(stream, "superstrong.mp4", "https://twitter.com/intent/tweet?hashtags=LongElmo2020%2CMakeAmericaLongAgain");
         }
-        
+
+        public class AsmCommandContext
+        {
+            public Hex hex { get; set; }
+            public int counter { get; set; }
+        }
+        public class Hex
+        {
+            public string arm64 { get; set; }
+        }
+
+        public class DisasmCommandContext
+        {
+            public Asm asm { get; set; }
+            public int counter { get; set; }
+        }
+        public class Asm
+        {
+            public string arm64 { get; set; }
+        }
+
         [Command("asm")]
         [Summary("Converts ARM64 assembly code to hex code")]
         public Task AssembleAsync([Remainder] string assembly)
@@ -32,12 +54,16 @@ namespace IvyBot.Modules
                 string json = @"{""asm"":""" + $"{assembly}" + @"""," + @"""offset"":""0x100"",""arch"":""arm64""}";
                 
                 string result = client.UploadString("https://armconverter.com/api/convert", "POST", json);
+                var resultSubString = result.Substring(18, 7);
+                var finalResult = result.Replace(resultSubString, " ").Replace("]", " ");
                 
-                return ReplyAsync(result);
+                string hex = JsonSerializer.Deserialize<AsmCommandContext>(finalResult).hex.arm64.Replace("### ", " ");
+                
+                return ReplyAsync(hex);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return ReplyAsync(ex.Message);
+                return ReplyAsync("Invalid assembly code");
             }
         }
 
@@ -53,12 +79,16 @@ namespace IvyBot.Modules
                 string json = @"{""hex"":""" + $"{hex}" + @"""," + @"""offset"":""0x100"",""arch"":""arm64""}";
                 
                 string result = client.UploadString("https://armconverter.com/api/convert", "POST", json);
+                var resultSubString = result.Substring(18, 7);
+                var finalResult = result.Replace(resultSubString, " ").Replace("]", " ");
+
+                string asm = JsonSerializer.Deserialize<DisasmCommandContext>(finalResult).asm.arm64.Replace("### ", " ");
                 
-                return ReplyAsync(result);
+                return ReplyAsync(asm);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return ReplyAsync(ex.Message);
+                return ReplyAsync("Invalid hex code");
             }
         }
         
