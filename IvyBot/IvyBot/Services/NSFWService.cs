@@ -32,7 +32,7 @@ namespace IvyBot.Services
         {
             try
             {
-                var headers = new Dictionary<string,string> { {"User-Agent", "ivy-bot/5.1 (https://github.com/Ivy-Wusky/ivy-bot)"} };
+                var headers = new Dictionary<string,string> { {"User-Agent", "ivy-bot/5.2 (https://github.com/Ivy-Wusky/ivy-bot)"} };
                 
                 var random = new Random();
                 var url = $"http://e621.net/posts.json?limit=100&tags={tag.Replace(" ", "&")}";
