@@ -19,7 +19,7 @@ namespace IvyBot.Configuration
 
         internal void WriteSetting(KeyValuePair setting)
         {
-            if(SettingExists(setting))
+            if (SettingExists(setting))
             {
                 UpdateSetting(setting);
             }

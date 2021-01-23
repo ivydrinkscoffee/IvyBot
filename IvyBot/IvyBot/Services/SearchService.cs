@@ -60,9 +60,9 @@ namespace IvyBot.Services
         
         public static async Task<string> GetResponseStringAsync(string url, IEnumerable<KeyValuePair<string, string>> headers = null, HttpRequestMethod method = HttpRequestMethod.GET)
         {
-            using (var streampoop = new StreamReader(await GetResponseStreamAsync(url, headers, method)))
+            using (var streamReader = new StreamReader(await GetResponseStreamAsync(url, headers, method)))
             {
-                return await streampoop.ReadToEndAsync();
+                return await streamReader.ReadToEndAsync();
             }
         }
     }

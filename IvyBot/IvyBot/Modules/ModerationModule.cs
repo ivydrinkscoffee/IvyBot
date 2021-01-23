@@ -3,7 +3,6 @@ using Discord.Commands;
 using Discord.WebSocket;
 using System.Linq;
 using System.Threading.Tasks;
-using IvyBot.Services;
 
 namespace IvyBot.Modules
 {
@@ -66,16 +65,15 @@ namespace IvyBot.Modules
             await ReplyAsync($"<:authorized:585790083161128980> **{userInfo.Mention}** i̶̧̫͙̼̤̥͑͜ṥ̸͕̳͉̈́̍̀ ̴̧̧̛̣̥̞͔̥̞̞͕͕̠̝̲̖̟̓͐͂̑̌̎̚͝ṇ̵̝̬̥̠̮̩͚̗͍͇͇͊̏̈́o̸̲̼͕͓̼̜̦͍͔̙͕͈̊̈́̅̋̆͒̅͌̅́̚͝͝͝͝ͅw̷͕͚͍̮̹̪̮͖̞̠̼͓̯̫̓͜ ̶̧̫̣̟̼̻͚̞̹̯̉̃̑͑b̷͎̞̹̘̣̫͖͔̰̘͕̪̲̭͓͕͌͆ͅä̶͉͖͖̥̮̭͔̖̒̊̊͆̋̌̿̃̿͂̍͋̍͆̍n̶̥̓̒̏͑͂̉͋̃͛̐͋͝͠͝n̵̩̺͖̦̥̆͆̆̑̄͆̔̃̀̃̕͝ē̵͙̬͚̝̭͑̃̓̀́̾͠ḋ̵̡͎̖̻͕͖̮̜̖̗̠͙͔̻̰̰̮̓͂̈̇̉̓̚");
         }
 
-        /*
         [RequireUserPermission(GuildPermission.ManageRoles)]
         [RequireBotPermission(GuildPermission.ManageRoles)]
         [Command("mute")]
         [Summary("Mutes the specified user, disallowing them from sending messages anywhere in the server")]
-        public async Task MuteAsync(IGuildUser user)
+        public async Task MuteAsync(SocketGuildUser user)
         {
             GuildPermissions mutedPerms = new GuildPermissions(sendMessages: false);
             
-            var mutedRole = await user.Guild.CreateRoleAsync("Muted", mutedPerms, null, false, null);
+            IRole mutedRole = user.Guild.Roles.Where(r => r.Name == "Muted").FirstOrDefault() ?? await user.Guild.CreateRoleAsync("Muted", mutedPerms, null, false, null) as IRole;
             await user.AddRoleAsync(mutedRole);
 
             var check = new Emoji("✅");
@@ -94,6 +92,5 @@ namespace IvyBot.Modules
             var check = new Emoji("✅");
             await Context.Message.AddReactionAsync(check);
         }
-        */
     }
 }

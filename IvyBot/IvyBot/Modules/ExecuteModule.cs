@@ -3,7 +3,6 @@ using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using Discord.Commands;
 using System.Threading.Tasks;
-using Discord.WebSocket;
 using System.Collections.Generic;
 
 namespace IvyBot.Modules
