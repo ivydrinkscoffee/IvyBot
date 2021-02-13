@@ -48,7 +48,7 @@ namespace IvyBot.Modules
         [Summary("Gives a list of all available color roles")]
         public async Task ColorListAsync()
         {
-            string list = $"<:invite:658538493949116428> Available colors:\n" + string.Join(", ", colors.Select(c => '`' + c.Name + '`'));
+            string list = $"<:role:808826577785716756> Available colors:\n" + string.Join(", ", colors.Select(c => '`' + c.Name + '`'));
             
             await ReplyAsync(list);
         }

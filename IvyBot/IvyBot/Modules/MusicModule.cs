@@ -1,5 +1,4 @@
-﻿/*
-using Discord;
+﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using IvyBot.Services;
@@ -85,4 +84,3 @@ namespace DiscordBot.Modules
             => await ReplyAsync(await _musicService.ResumeAsync(Context.Guild.Id));
     }
 }
-*/

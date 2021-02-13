@@ -67,7 +67,7 @@ namespace IvyBot
             var cmdHandler = new CommandHandler(_client, _cmdService, _services, _config, _logService);
             await cmdHandler.InitializeAsync();
 
-            // await _services.GetRequiredService<MusicService>().InitializeAsync();
+            await _services.GetRequiredService<MusicService>().InitializeAsync();
             
             await Task.Delay(-1);
         }
@@ -83,9 +83,9 @@ namespace IvyBot
             .AddSingleton(_cmdService)
             .AddSingleton(_logService)
             .AddSingleton(_config)
-            // .AddSingleton<LavaRestClient>()
-            // .AddSingleton<LavaSocketClient>()
-            // .AddSingleton<MusicService>()
+            .AddSingleton<LavaRestClient>()
+            .AddSingleton<LavaSocketClient>()
+            .AddSingleton<MusicService>()
             .BuildServiceProvider();
     }
 }

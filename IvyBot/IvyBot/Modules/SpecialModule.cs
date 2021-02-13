@@ -50,7 +50,7 @@ namespace IvyBot.Modules
                 var client = new WebClient();
                 
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                string json = @"{""asm"":""" + $"{assembly}" + @"""," + @"""offset"":""0x100"",""arch"":""arm64""}";
+                string json = @"{""asm"":""" + $"{assembly}" + @"""," + @"""offset"":"""",""arch"":""arm64""}";
                 
                 string result = client.UploadString("https://armconverter.com/api/convert", "POST", json);
                 var resultSubString = result.Substring(18, 7);
@@ -75,7 +75,7 @@ namespace IvyBot.Modules
                 var client = new WebClient();
                 
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                string json = @"{""hex"":""" + $"{hex}" + @"""," + @"""offset"":""0x100"",""arch"":""arm64""}";
+                string json = @"{""hex"":""" + $"{hex}" + @"""," + @"""offset"":"""",""arch"":""arm64""}";
                 
                 string result = client.UploadString("https://armconverter.com/api/convert", "POST", json);
                 var resultSubString = result.Substring(18, 7);
@@ -103,7 +103,7 @@ namespace IvyBot.Modules
             }
             else
             {
-                var filestream = WebRequest.Create($"https://splatoon-hackers.github.io/{version}public.pchtxt");
+                var filestream = WebRequest.Create($"https://splatoon-hackers.github.io/assets/pchtxt/{version}public.pchtxt");
                 Stream stream = filestream.GetResponse().GetResponseStream();
                 await Context.Channel.SendFileAsync(stream, $"{version}public.pchtxt");
             }
@@ -113,9 +113,9 @@ namespace IvyBot.Modules
         [Summary("Sends the latest public Starlion for Splatoon 2")]
         public async Task SendStarlionAsync()
         {
-            var filestream = WebRequest.Create("https://splatoon-hackers.github.io/starlion_public.rar");
+            var filestream = WebRequest.Create("https://splatoon-hackers.github.io/assets/misc/starlion-injector-gui.rar");
             Stream stream = filestream.GetResponse().GetResponseStream();
-            await Context.Channel.SendFileAsync(stream, "starlion_public.rar");
+            await Context.Channel.SendFileAsync(stream, "starlion-injector-gui.rar");
         }
     }
 }
