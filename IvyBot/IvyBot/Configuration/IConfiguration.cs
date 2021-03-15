@@ -1,8 +1,6 @@
-namespace IvyBot.Configuration
-{
-    public interface IConfiguration
-    {
-        string GetValueFor(string key);
-        void SetValueFor(string key, string value);
+namespace IvyBot.Configuration {
+    public interface IConfiguration {
+        string GetValueFor (string key);
+        void SetValueFor (string key, string value);
     }
 }
