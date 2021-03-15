@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Discord.Commands;
 using IvyBot.Services;
@@ -21,41 +19,33 @@ namespace IvyBot.Modules {
         [Command ("asm")]
         [Summary ("Converts ARM64 assembly code to hex code")]
         public async Task AssembleAsync ([Remainder] string assembly) {
-            try {
-                var client = new WebClient ();
+            var client = new WebClient ();
 
-                client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                string json = @"{""asm"":""" + $"{assembly}" + @"""," + @"""offset"":"""",""arch"":""arm64""}";
+            client.Headers[HttpRequestHeader.ContentType] = "application/json";
+            string json = @"{""asm"":""" + $"{assembly}" + @"""," + @"""offset"":"""",""arch"":""arm64""}";
 
-                string result = client.UploadString ("https://armconverter.com/api/convert", json);
+            string result = client.UploadString ("https://armconverter.com/api/convert", json);
 
-                JsonService.Assembly.Json obj = JsonService.Assembly.Json.FromJson (result);
-                string hex = obj.Hex.Arm64[0].String.Replace ("### ", " ");
+            JsonService.Assembly.Json obj = JsonService.Assembly.Json.FromJson (result);
+            string hex = obj.Hex.Arm64[0].String.Replace ("### ", " ");
 
-                await ReplyAsync (hex);
-            } catch (Exception) {
-                await ReplyAsync ("Invalid assembly code");
-            }
+            await ReplyAsync (hex);
         }
 
         [Command ("disasm")]
         [Summary ("Converts ARM64 hex code to assembly code")]
         public async Task DisassembleAsync ([Remainder] string hex) {
-            try {
-                var client = new WebClient ();
+            var client = new WebClient ();
 
-                client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                string json = @"{""hex"":""" + $"{hex}" + @"""," + @"""offset"":"""",""arch"":""arm64""}";
+            client.Headers[HttpRequestHeader.ContentType] = "application/json";
+            string json = @"{""hex"":""" + $"{hex}" + @"""," + @"""offset"":"""",""arch"":""arm64""}";
 
-                string result = client.UploadString ("https://armconverter.com/api/convert", json);
+            string result = client.UploadString ("https://armconverter.com/api/convert", json);
 
-                JsonService.Hex.Json obj = JsonService.Hex.Json.FromJson (result);
-                string asm = obj.Asm.Arm64[0].String.Replace ("### ", " ");
+            JsonService.Hex.Json obj = JsonService.Hex.Json.FromJson (result);
+            string asm = obj.Asm.Arm64[0].String.Replace ("### ", " ");
 
-                await ReplyAsync (asm);
-            } catch (Exception) {
-                await ReplyAsync ("Invalid hex code");
-            }
+            await ReplyAsync (asm);
         }
 
         [Command ("pchtxt")]
