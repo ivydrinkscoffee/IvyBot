@@ -53,11 +53,8 @@ namespace IvyBot {
             if (result.Error != null) {
                 switch (result.Error) {
                     case CommandError.UnknownCommand:
-
                         return;
-
                     default:
-
                         await context.Channel.SendMessageAsync ($"<:xmark:314349398824058880> {result.ErrorReason}");
                         break;
                 }

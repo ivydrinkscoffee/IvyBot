@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -61,15 +62,23 @@ namespace IvyBot.Modules {
         [RequireUserPermission (GuildPermission.ManageRoles)]
         [RequireBotPermission (GuildPermission.ManageRoles)]
         [Command ("mute")]
-        [Summary ("Mutes the specified user, disallowing them from sending messages anywhere in the server")]
-        public async Task MuteAsync (SocketGuildUser user) {
-            GuildPermissions mutedPerms = new GuildPermissions (sendMessages: false);
+        [Summary ("Mutes the specified user, denying the permission for them to send messages anywhere in the server")]
+        public async Task MuteAsync (SocketGuildUser user, int? duration = null) {
+            var newRole = user.Guild.Roles.Where (r => r.Name == "Muted").FirstOrDefault () ?? await user.Guild.CreateRoleAsync ("Muted", null, null, false, null) as IRole;
+            await user.AddRoleAsync (newRole);
 
-            IRole mutedRole = user.Guild.Roles.Where (r => r.Name == "Muted").FirstOrDefault () ?? await user.Guild.CreateRoleAsync ("Muted", mutedPerms, null, false, null) as IRole;
-            await user.AddRoleAsync (mutedRole);
+            foreach (var channel in Context.Guild.Channels) {
+                await channel.AddPermissionOverwriteAsync (newRole, OverwritePermissions.DenyAll (channel).Modify (viewChannel: PermValue.Allow, readMessageHistory: PermValue.Allow));
+            }
 
             var check = new Emoji ("✅");
             await Context.Message.AddReactionAsync (check);
+
+            if (duration != null) {
+                Thread.Sleep ((int) duration * 60000);
+                var oldRole = user.Roles.Where (r => r.Name.Equals ("Muted"));
+                await user.RemoveRolesAsync (oldRole);
+            }
         }
 
         [RequireUserPermission (GuildPermission.ManageRoles)]

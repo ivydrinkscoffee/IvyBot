@@ -26,8 +26,8 @@ namespace IvyBot.Modules {
 
             string result = client.UploadString ("https://armconverter.com/api/convert", json);
 
-            JsonService.Assembly.Json obj = JsonService.Assembly.Json.FromJson (result);
-            string hex = obj.Hex.Arm64[0].String.Replace ("### ", " ");
+            var obj = JsonService.Assembly.Json.FromJson (result);
+            string hex = obj.Hex.Arm64[1].ToString ().Replace ("### ", " ");
 
             await ReplyAsync (hex);
         }
@@ -42,18 +42,18 @@ namespace IvyBot.Modules {
 
             string result = client.UploadString ("https://armconverter.com/api/convert", json);
 
-            JsonService.Hex.Json obj = JsonService.Hex.Json.FromJson (result);
-            string asm = obj.Asm.Arm64[0].String.Replace ("### ", " ");
+            var obj = JsonService.Hex.Json.FromJson (result);
+            string asm = obj.Asm.Arm64[1].ToString ().Replace ("### ", " ");
 
-            await ReplyAsync (asm);
+            await ReplyAsync ($"```armasm\n{asm}\n```");
         }
 
         [Command ("pchtxt")]
         [Summary ("Sends the specified pchtxt for Splatoon 2")]
         public async Task SendPatchesAsync ([Remainder] string version) {
-            IEnumerable<string> versionList = new List<string> () { "5.0.0", "5.0.1", "5.1.0", "5.2.0", "5.2.1", "5.2.2", "5.3.0", "5.3.1" };
+            IEnumerable<string> versionList = new List<string> () { "5.0.0", "5.0.1", "5.1.0", "5.2.0", "5.2.1", "5.2.2", "5.3.0", "5.3.1", "5.4.0" };
 
-            if (StringService.EqualsAny (version, versionList) == false) {
+            if (version.EqualsAny (versionList) == false) {
                 await ReplyAsync ("<:xmark:314349398824058880> Game version not supported");
             } else {
                 var filestream = WebRequest.Create ($"https://splatoon-hackers.github.io/assets/pchtxt/{version}public.pchtxt");

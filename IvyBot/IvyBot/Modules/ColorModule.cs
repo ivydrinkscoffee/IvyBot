@@ -59,7 +59,7 @@ namespace IvyBot.Modules {
         [Command ("colorclear")]
         [Summary ("Removes all your current color roles")]
         public async Task ColorClearAsync () {
-            var colorRoles = (Context.User as SocketGuildUser).Roles.Where (r => StringService.EqualsAny (r.Name, colors.Select (c => c.Name)));
+            var colorRoles = (Context.User as SocketGuildUser).Roles.Where (r => r.Name.EqualsAny (colors.Select (c => c.Name)));
 
             await (Context.User as SocketGuildUser).RemoveRolesAsync (colorRoles);
 
