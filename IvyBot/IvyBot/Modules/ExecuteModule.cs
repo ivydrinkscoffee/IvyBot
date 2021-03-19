@@ -12,7 +12,9 @@ namespace IvyBot.Modules {
             public IvyBotClient client { get; set; }
         }
 
+#pragma warning disable CS0649
         private static readonly IvyBotClient _client;
+#pragma warning disable CS0649
 
         [RequireOwner]
         [Command ("eval")]
