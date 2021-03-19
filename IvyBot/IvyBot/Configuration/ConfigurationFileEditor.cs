@@ -1,16 +1,14 @@
-using System.Configuration;
-
 namespace IvyBot.Configuration {
     internal class ConfigurationFileEditor {
         private readonly System.Configuration.Configuration file;
 
         internal ConfigurationFileEditor () {
-            file = ConfigurationManager.OpenExeConfiguration (ConfigurationUserLevel.None);
+            file = System.Configuration.ConfigurationManager.OpenExeConfiguration (System.Configuration.ConfigurationUserLevel.None);
         }
 
         internal void Save () {
-            file.Save (ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection (file.AppSettings.SectionInformation.Name);
+            file.Save (System.Configuration.ConfigurationSaveMode.Modified);
+            System.Configuration.ConfigurationManager.RefreshSection (file.AppSettings.SectionInformation.Name);
         }
 
         internal void WriteSetting (KeyValuePair setting) {

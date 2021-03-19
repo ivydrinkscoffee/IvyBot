@@ -12,13 +12,13 @@ namespace IvyBot.Modules {
         [Command ("invite")]
         [Summary ("DMs you and invite link so you can invite me to a server of your choice")]
         public async Task InviteAsync () {
-            await Context.User.SendMessageAsync ("<:invite:658538493949116428> https://discord.com/api/oauth2/authorize?client_id=719933579865489499&permissions=8&scope=bot");
-            await ReplyAsync ("<:channel:585783907841212418> Check DMs");
+            await Context.User.SendMessageAsync ("https://discord.com/api/oauth2/authorize?client_id=719933579865489499&permissions=8&scope=bot");
+            await ReplyAsync ("Check DMs");
         }
 
         [Command ("pat")]
         [Summary ("Pat someone")]
-        public async Task Pat (SocketUser user = null) {
+        public async Task PatAsync (SocketUser user = null) {
             var userInfo = user ?? Context.Client.CurrentUser;
             string json = new WebClient ().DownloadString ("https://some-random-api.ml/animu/pat");
 
@@ -30,7 +30,7 @@ namespace IvyBot.Modules {
 
         [Command ("hug")]
         [Summary ("Hug someone")]
-        public async Task Hug (SocketUser user = null) {
+        public async Task HugAsync (SocketUser user = null) {
             var userInfo = user ?? Context.Client.CurrentUser;
             string json = new WebClient ().DownloadString ("https://some-random-api.ml/animu/hug");
 

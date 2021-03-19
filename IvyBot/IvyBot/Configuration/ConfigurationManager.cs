@@ -1,9 +1,7 @@
-using System.Configuration;
-
 namespace IvyBot.Configuration {
-    public class ConfigManager : IConfiguration {
+    public class ConfigurationManager : IConfiguration {
         public string GetValueFor (string key) {
-            return ConfigurationManager.AppSettings[key];
+            return System.Configuration.ConfigurationManager.AppSettings[key];
         }
 
         public void SetValueFor (string key, string value) {

@@ -10,7 +10,7 @@ namespace IvyBot.Modules {
         [Command ("changeprefix")]
         [Summary ("Modifies the prefix of the bot in all servers")]
         public async Task UpdatePrefixAsync ([Remainder] string prefix) {
-            ConfigManager configManager = new ConfigManager ();
+            ConfigurationManager configManager = new ConfigurationManager ();
             configManager.SetValueFor (configManager.GetValueFor (Constants.BotPrefix), prefix);
 
             var check = new Emoji ("✅");

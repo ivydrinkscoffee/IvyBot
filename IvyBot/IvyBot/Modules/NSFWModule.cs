@@ -9,7 +9,7 @@ namespace IvyBot.Modules {
         [Command ("rule34")]
         [Summary ("Gets images or videos from rule34.xxx specified by the entered text")]
         public async Task Rule34Async ([Remainder] string tag) {
-            await ReplyAsync (NSFWService.GetRule34File (tag).Result);
+            await ReplyAsync (await NSFWService.GetRule34File (tag));
         }
 
         [RequireNsfw]

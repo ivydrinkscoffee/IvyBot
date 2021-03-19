@@ -9,7 +9,7 @@ namespace IvyBot.Modules {
     public class DecodeModule : ModuleBase<SocketCommandContext> {
         [Command ("base64decode")]
         [Summary ("Decode the entered Base64")]
-        public async Task DecodeBase64 ([Remainder] string base64) {
+        public async Task DecodeBase64Async ([Remainder] string base64) {
             string json = new WebClient ().DownloadString ("https://some-random-api.ml/base64?decode=" + base64);
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>> (json);
@@ -19,7 +19,7 @@ namespace IvyBot.Modules {
 
         [Command ("base64encode")]
         [Summary ("Encode the entered text into Base64")]
-        public async Task EncodeBase64 ([Remainder] string text) {
+        public async Task EncodeBase64Async ([Remainder] string text) {
             string json = new WebClient ().DownloadString ("https://some-random-api.ml/base64?encode=" + text.Replace (" ", "%20"));
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>> (json);
@@ -29,7 +29,7 @@ namespace IvyBot.Modules {
 
         [Command ("binarydecode")]
         [Summary ("Decode the entered Binary")]
-        public async Task DecodeBinary ([Remainder] string binary) {
+        public async Task DecodeBinaryAsync ([Remainder] string binary) {
             string json = new WebClient ().DownloadString ("https://some-random-api.ml/binary?decode=" + binary);
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>> (json);
@@ -39,7 +39,7 @@ namespace IvyBot.Modules {
 
         [Command ("binaryencode")]
         [Summary ("Encode the entered text into Binary")]
-        public async Task EncodeBinary ([Remainder] string text) {
+        public async Task EncodeBinaryAsync ([Remainder] string text) {
             string json = new WebClient ().DownloadString ("https://some-random-api.ml/binary?text=" + text.Replace (" ", "%20"));
 
             Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>> (json);

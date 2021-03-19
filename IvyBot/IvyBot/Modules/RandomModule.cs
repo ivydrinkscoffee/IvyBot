@@ -20,7 +20,7 @@ namespace IvyBot.Modules {
         }
 
         [Command ("ratedick")]
-        [Summary ("The gay council will decide your dick's fate")]
+        [Summary ("The council will decide your dick's fate")]
         public async Task RateAsync () {
             string[] length = { "==========", "=========", "========", "=======", "======", "=====", "====", "===", "==", "=", "()" };
             string[] rating = { "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0" };

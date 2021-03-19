@@ -38,7 +38,7 @@ namespace IvyBot.Modules {
 
         [Command ("membercount")]
         [Summary ("Returns the amount of users in the server")]
-        public async Task GetUserCount () {
+        public async Task GetUserCountAsync () {
             await ReplyAsync ($"**{Context.Guild.MemberCount}** members");
         }
 

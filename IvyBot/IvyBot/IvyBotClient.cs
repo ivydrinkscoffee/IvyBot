@@ -37,7 +37,7 @@ namespace IvyBot {
 
             _logService = new LogService ();
 
-            _config = new ConfigManager ();
+            _config = new ConfigurationManager ();
         }
 
         public async Task InitializeAsync () {

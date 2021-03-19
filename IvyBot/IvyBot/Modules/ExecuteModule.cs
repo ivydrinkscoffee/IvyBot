@@ -36,7 +36,7 @@ namespace IvyBot.Modules {
                 if (returnValue != null) {
                     await ReplyAsync ($"```cs\n{returnValue.ToString()}\n```");
                 } else {
-                    await ReplyAsync ("<:xmark:314349398824058880> An unkown error occured while attempting to run the script");
+                    await ReplyAsync ("The script's return value output as null");
                 }
             } catch (Exception ex) {
                 await ReplyAsync ($"```cs\n{ex.Message}\n```");

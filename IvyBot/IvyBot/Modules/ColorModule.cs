@@ -43,7 +43,7 @@ namespace IvyBot.Modules {
         [Command ("colorlist")]
         [Summary ("Gives a list of all available color roles")]
         public async Task ColorListAsync () {
-            string list = $"<:role:808826577785716756> Available colors:\n" + string.Join (", ", colors.Select (c => '`' + c.Name + '`'));
+            string list = $"Available colors:\n" + string.Join (", ", colors.Select (c => '`' + c.Name + '`'));
 
             await ReplyAsync (list);
         }

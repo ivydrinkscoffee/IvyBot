@@ -22,13 +22,13 @@ namespace IvyBot.Services {
             ColorDef color;
 
             if (!ColorModule.colorMap.TryGetValue (colorName.ToLowerInvariant (), out color)) {
-                return "<:xmark:314349398824058880> Color not found";
+                return $"Color '{colorName}' not found";
             }
 
             IRole role = user.Guild.Roles.Where (r => r.Name == color.Name).FirstOrDefault () ?? await user.Guild.CreateRoleAsync (color.Name, GuildPermissions.None, color.Color, false, null) as IRole;
             await user.AddRoleAsync (role);
 
-            return $"<:check:314349398811475968> Set **{user.ToString()}**'s color role to **{color.Name}**";
+            return $"Set **{user.ToString()}**'s color role to **{color.Name}**";
         }
     }
 }

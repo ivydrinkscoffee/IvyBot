@@ -54,7 +54,7 @@ namespace IvyBot.Modules {
             IEnumerable<string> versionList = new List<string> () { "5.0.0", "5.0.1", "5.1.0", "5.2.0", "5.2.1", "5.2.2", "5.3.0", "5.3.1", "5.4.0" };
 
             if (version.EqualsAny (versionList) == false) {
-                await ReplyAsync ("<:xmark:314349398824058880> Game version not supported");
+                await ReplyAsync ("Game version not supported");
             } else {
                 var filestream = WebRequest.Create ($"https://splatoon-hackers.github.io/assets/pchtxt/{version}public.pchtxt");
                 Stream stream = filestream.GetResponse ().GetResponseStream ();

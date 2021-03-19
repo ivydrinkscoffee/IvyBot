@@ -55,7 +55,7 @@ namespace IvyBot {
                     case CommandError.UnknownCommand:
                         return;
                     default:
-                        await context.Channel.SendMessageAsync ($"<:xmark:314349398824058880> {result.ErrorReason}");
+                        await context.Channel.SendMessageAsync ($"{result.ErrorReason}");
                         break;
                 }
             }
@@ -164,9 +164,9 @@ namespace IvyBot {
         }
         */
 
-        private async Task LogAsync (LogMessage logMessage) {
+        private async Task<Task> LogAsync (LogMessage logMessage) {
             await _logService.LogAsync (logMessage);
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }
