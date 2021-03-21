@@ -30,7 +30,7 @@ More modules/commands and [Migrate To Latest .NET SDK And Dependencies](https://
 [Victoria](https://github.com/Yucked/Victoria)
 
 [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
-# Special Thanks
+# Special thanks
 [Lavalink](https://github.com/Frederikam/Lavalink)
 
 [some random api](https://some-random-api.ml)
