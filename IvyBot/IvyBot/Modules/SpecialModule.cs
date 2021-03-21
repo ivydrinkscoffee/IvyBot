@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using ArmConverter;
 using Discord.Commands;
 using IvyBot.Services;
 
@@ -19,15 +20,7 @@ namespace IvyBot.Modules {
         [Command ("asm")]
         [Summary ("Converts ARM64 assembly code to hex code")]
         public async Task AssembleAsync ([Remainder] string assembly) {
-            var client = new WebClient ();
-
-            client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            string json = @"{""asm"":""" + $"{assembly}" + @"""," + @"""offset"":"""",""arch"":""arm64""}";
-
-            string result = client.UploadString ("https://armconverter.com/api/convert", json);
-
-            var obj = JsonService.Assembly.Json.FromJson (result);
-            string hex = obj.Hex.Arm64[1].ToString ().Replace ("### ", " ");
+            string hex = Assembler.Assemble (assembly);
 
             await ReplyAsync (hex);
         }
@@ -35,15 +28,7 @@ namespace IvyBot.Modules {
         [Command ("disasm")]
         [Summary ("Converts ARM64 hex code to assembly code")]
         public async Task DisassembleAsync ([Remainder] string hex) {
-            var client = new WebClient ();
-
-            client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            string json = @"{""hex"":""" + $"{hex}" + @"""," + @"""offset"":"""",""arch"":""arm64""}";
-
-            string result = client.UploadString ("https://armconverter.com/api/convert", json);
-
-            var obj = JsonService.Hex.Json.FromJson (result);
-            string asm = obj.Asm.Arm64[1].ToString ().Replace ("### ", " ");
+            string asm = Disassembler.Disassemble (hex);
 
             await ReplyAsync ($"```armasm\n{asm}\n```");
         }
