@@ -1,39 +1,38 @@
-# invite
-click [here](https://discord.com/api/oauth2/authorize?client_id=719933579865489499&permissions=8&scope=bot) to add the **bot** to a **server** of your choice
-# building
-can be built on windows, linux, and macos using the [.net core sdk](https://dotnet.microsoft.com/download/dotnet-core) or can be built **directly** through [visual studio](https://visualstudio.microsoft.com) or [visual studio code](https://code.visualstudio.com)
-# running and hosting
-clone the repository with `git clone https://github.com/Ivy-Wusky/ivy-bot.git` then rename **App.config.example** to **App.config** and edit it accordingly to your **discord** and **lavalink** environment
-
+# IvyBot
+Multi-purpose [Discord](http://discordapp.com/) bot written in **C#**
+# Invite
+Click [here](https://discord.com/api/oauth2/authorize?client_id=719933579865489499&permissions=8&scope=bot) to add the **bot** to a **server** of your choice
+# Building
+Can be built on Windows, Linux, and macOS using the [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) or can be built **directly** through [Visual Studio](https://visualstudio.microsoft.com) or [Visual Studio Code](https://code.visualstudio.com)
+# Running and hosting
+Clone the repository with `git clone https://github.com/ivydrinkscoffee/IvyBot.git` then rename **App.config.example** to **App.config** and edit it accordingly to your **Discord** and **Lavalink** environment
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
 <configuration>  
-    <startup>   
-        <supportedRuntime version="v4.0" sku="netcoreapp2.1"/>  
+    <startup>  
+        <supportedRuntime version="v4.0" sku="netcoreapp2.1" />  
     </startup>  
   <appSettings>  
-    <add key="Token" value="replace with your bot token"/>
-    <add key="Prefix" value="replace with a prefix of your choice"/>
-    <add key="Host" value="replace with the set lavalink address"/>
-    <add key="Port" value="replace with the set lavalink port"/>
-    <add key="Password" value="replace with the set lavalink password"/>
+    <add key="Token" value="replace with your bot token" />  
+    <add key="Prefix" value="replace with a prefix of your choice" />  
+    <add key="Host" value="replace with the set lavalink address" />  
+    <add key="Port" value="replace with the set lavalink port" />  
+    <add key="Password" value="replace with the set lavalink password" />  
   </appSettings>  
 </configuration>  
 ```
+Remember that if you are running your **Lavalink** instance on [Heroku](https://www.heroku.com) the port will always be **80** regardless of the port you set
+# Future plans
+More modules/commands and [Migrate To Latest .NET SDK And Dependencies](https://github.com/Ivy-Wusky/ivy-bot/projects/1)
+# Credits
+[Discord.Net](https://github.com/discord-net/Discord.Net)
 
-remember that if you are running your **lavalink** instance on [heroku](https://www.heroku.com) the port will always be **80** regardless of the port you set
+[Victoria](https://github.com/Yucked/Victoria)
 
-# future plans
-more modules/commands and [migrating to latest .net core and dependencies](https://github.com/Ivy-Wusky/ivy-bot/projects/1)
-# credits
-[discord.net](https://github.com/discord-net/Discord.Net)
-
-[victoria](https://github.com/Yucked/Victoria)
-
-[newtonsoft.json](https://github.com/JamesNK/Newtonsoft.Json)
-# special thanks
-[lavalink](https://github.com/Frederikam/Lavalink)
+[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+# Special Thanks
+[Lavalink](https://github.com/Frederikam/Lavalink)
 
 [some random api](https://some-random-api.ml)
-# support
-**contact** me on my [discord server](https://discord.gg/svMC3dt) for further help
+# Support
+**Contact** me on my [Discord server](https://discord.gg/svMC3dt) for further help
