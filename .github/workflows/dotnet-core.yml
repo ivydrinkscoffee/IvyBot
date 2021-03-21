@@ -1,4 +1,4 @@
-name: .NET Core
+name: .NET
 
 on:
   push:
@@ -9,15 +9,15 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.1.811
-    - name: Install dependencies
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
       run: dotnet restore IvyBot/IvyBot/IvyBot.csproj
     - name: Build
       run: dotnet build IvyBot/IvyBot/IvyBot.csproj --configuration Release --no-restore
@@ -29,4 +29,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ivy-bot
-        path: /home/runner/work/ivy-bot/ivy-bot/IvyBot/IvyBot/bin/Debug/netcoreapp2.1/publish/
+        path: /home/runner/work/ivy-bot/ivy-bot/IvyBot/IvyBot/bin/Debug/net5.0/publish/
