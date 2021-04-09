@@ -52,5 +52,11 @@ namespace IvyBot.Modules {
         public async Task ChadThinkAsync () {
             await ReplyAsync ("https://cdn.discordapp.com/emojis/366999782348292108.png?v=1");
         }
+
+        [Command ("ping")]
+        [Summary ("Returns the bot's latency")]
+        public async Task PingAsync () {
+            await ReplyAsync (Context.Client.Latency.ToString ());
+        }
     }
 }

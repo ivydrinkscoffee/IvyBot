@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ArmConverter</name>
+    </assembly>
+    <members>
+        <member name="T:ArmConverter.Assembler">
+            <summary>
+            The main <c>Assembler</c> class.
+            Contains methods for assembling ARM assembly code into hex code.
+            <list type="bullet">
+            <item>
+            <term>Assemble</term>
+            <description>Main assembling method</description>
+            </item>
+            <item>
+            <term>MultiAssemble</term>
+            <description>Main multi-assembling method</description>
+            </item>
+            </list>
+            </summary>
+            <remarks>
+            <para>This class can assemble all types of ARM assembly code.</para>
+            <para>These methods are performed on strings and string arrays only.</para>
+            </remarks>
+        </member>
+        <member name="M:ArmConverter.Assembler.Assemble(System.String,ArmConverter.Utilities.ArchSelection,System.Nullable{System.Int32})">
+            <summary>
+            Assembles the specified assembly code <paramref name="assembly"/> and returns the result.
+            </summary>
+            <returns>The resulting hex code from the assembled assembly code.</returns>
+            <example>
+            <code>
+            string hex = Assembler.Assemble ("mov w0, #0");
+            Console.WriteLine (hex);
+            </code>
+            </example>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown when an error occurs after attempting to assemble the assembly code.
+            </exception>
+            See <see cref="M:ArmConverter.Assembler.MultiAssemble(System.String[],ArmConverter.Utilities.ArchSelection,System.Nullable{System.Int32})"/> to assemble an array of lines of assemble code.
+            <param name="assembly">The assembly code string to assemble.</param>
+            <param name="archSelection">The architecture that the assembly code <paramref name="assembly"/> corresponds to.</param>
+            <param name="offset">The offset integer that the resulting hex code should be shifted by.</param>
+        </member>
+        <member name="M:ArmConverter.Assembler.MultiAssemble(System.String[],ArmConverter.Utilities.ArchSelection,System.Nullable{System.Int32})">
+            <summary>
+            Assembles the specified assembly code array <paramref name="assembly"/> and returns the result.
+            </summary>
+            <returns>The resulting hex code array from the assembled assembly code.</returns>
+            <example>
+            <code>
+            string[] assembly = { "mov w0, #0", "ret", "ldr w3, [x1]", "and w3, w3, #0xff", "cmp w3, #0x61", "b.ne #0x1c", "adr x1, #0x24", "sub sp, sp, #0x60", "b #0xfffffffffffcbff4" };
+            string[] hex = Assembler.MultiAssemble (assembly);
+            Console.WriteLine (string.Join ('\n', hex));
+            </code>
+            </example>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown when an error occurs after attempting to assemble one of the lines of the assembly code.
+            </exception>
+            See <see cref="M:ArmConverter.Assembler.Assemble(System.String,ArmConverter.Utilities.ArchSelection,System.Nullable{System.Int32})"/> to assemble a single line of assemble code.
+            <param name="assembly">The assembly code string array to assemble.</param>
+            <param name="archSelection">The architecture that the assembly code <paramref name="assembly"/> corresponds to.</param>
+            <param name="offset">The offset integer that the resulting hex code should be shifted by.</param>
+        </member>
+        <member name="T:ArmConverter.Disassembler">
+            <summary>
+            The main <c>Disassembler</c> class.
+            Contains methods for disassembling ARM hex code into assembly code.
+            <list type="bullet">
+            <item>
+            <term>Disassemble</term>
+            <description>Main disassembling method</description>
+            </item>
+            <item>
+            <term>MultiDisassemble</term>
+            <description>Main multi-disassembling method</description>
+            </item>
+            </list>
+            </summary>
+            <remarks>
+            <para>This class can disassemble all types of ARM hex code.</para>
+            <para>These methods are performed on strings and string arrays only.</para>
+            </remarks>
+        </member>
+        <member name="M:ArmConverter.Disassembler.Disassemble(System.String,ArmConverter.Utilities.ArchSelection,System.Nullable{System.Int32})">
+            <summary>
+            Disassembles the specified hex code <paramref name="hex"/> and returns the result.
+            </summary>
+            <returns>The resulting assembly code from the disassembled hex code.</returns>
+            <example>
+            <code>
+            string assembly = Disassembler.Disassemble ("00008052");
+            Console.WriteLine (assembly);
+            </code>
+            </example>
+            <exception cref="T:System.Net.WebException">
+            Thrown when the hex code is invalid.
+            </exception>
+            See <see cref="M:ArmConverter.Disassembler.MultiDisassemble(System.String[],ArmConverter.Utilities.ArchSelection,System.Nullable{System.Int32})"/> to disassemble an array of elements of hex code.
+            <param name="hex">The hex code string to disassemble.</param>
+            <param name="archSelection">The architecture that the hex code <paramref name="hex"/> corresponds to.</param>
+            <param name="offset">The offset integer that the hex code <paramref name="hex"/> is shifted by.</param>
+        </member>
+        <member name="M:ArmConverter.Disassembler.MultiDisassemble(System.String[],ArmConverter.Utilities.ArchSelection,System.Nullable{System.Int32})">
+            <summary>
+            Disassembles the specified hex code array <paramref name="hex"/> and returns the result.
+            </summary>
+            <returns>The resulting assembly code array from the disassembled hex code.</returns>
+            <example>
+            <code>
+            string[] hex = { "00008052", "C0035FD6", "230040B9", "631C0012", "7F840171", "E1000054", "21010010", "FF8301D1", "FD2FFF17" };
+            string[] assembly = Disassembler.MultiDisassemble (hex);
+            Console.WriteLine (string.Join ('\n', assembly));
+            </code>
+            </example>
+            <exception cref="T:System.Net.WebException">
+            Thrown when one of the elements of the hex code is invalid.
+            </exception>
+            See <see cref="M:ArmConverter.Disassembler.Disassemble(System.String,ArmConverter.Utilities.ArchSelection,System.Nullable{System.Int32})"/> to disassemble a single line of hex code.
+            <param name="hex">The hex code string array to disassemble.</param>
+            <param name="archSelection">The architecture that the hex code <paramref name="hex"/> corresponds to.</param>
+            <param name="offset">The offset integer that the hex code <paramref name="hex"/> is shifted by.</param>
+        </member>
+        <member name="T:ArmConverter.Utilities">
+            <summary>
+            The main <c>Utilities</c> class.
+            Contains an enum for aiding with architecture choices.
+            <list type="bullet">
+            <item>
+            <term>ArchSelection</term>
+            <description>Main architecture enum</description>
+            </item>
+            </list>
+            </summary>
+            <remarks>
+            <para>This class can handle choices for every architecture that the API offers.</para>
+            </remarks>
+        </member>
+        <member name="T:ArmConverter.Utilities.ArchSelection">
+            <summary>
+            An enum for handling the architecture choice given by the main methods.
+            </summary>
+        </member>
+        <member name="F:ArmConverter.Utilities.ArchSelection.AArch64">
+            <summary>
+            Resembles the AArch64 or ARM64 architecture.
+            </summary>
+        </member>
+        <member name="F:ArmConverter.Utilities.ArchSelection.AArch32">
+            <summary>
+            Resembles the AArch32 or ARM architecture.
+            </summary>
+        </member>
+        <member name="F:ArmConverter.Utilities.ArchSelection.Thumb">
+            <summary>
+            Resembles the Thumb, Thumb-2 or T32 architecture extension.
+            </summary>
+        </member>
+    </members>
+</doc>

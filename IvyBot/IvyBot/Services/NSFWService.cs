@@ -24,7 +24,7 @@ namespace IvyBot.Services {
 
         public static async Task<string> GetE621File (string tag) {
             try {
-                var headers = new Dictionary<string, string> { { "User-Agent", "ivy-bot/6.0 (https://github.com/Ivy-Wusky/ivy-bot)" } };
+                var headers = new Dictionary<string, string> { { "User-Agent", "IvyBot/6.1 (https://github.com/ivydrinkscoffee/IvyBot)" } };
 
                 var random = new Random ();
                 var url = $"http://e621.net/posts.json?limit=100&tags={tag.Replace(" ", "&")}";

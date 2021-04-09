@@ -57,7 +57,7 @@ namespace IvyBot.Modules {
 
         [Command ("volume")]
         [Summary ("Sets the volume which the track will play at")]
-        public async Task VolumeAsync (int volume) => await ReplyAsync (await _musicService.SetVolumeAsync (volume, Context.Guild.Id));
+        public async Task VolumeAsync (ushort volume) => await ReplyAsync (await _musicService.SetVolumeAsync (volume, Context.Guild.Id));
 
         [Command ("pause")]
         [Summary ("Pauses the player")]
@@ -68,11 +68,16 @@ namespace IvyBot.Modules {
         public async Task ResumeAsync () => await ReplyAsync (await _musicService.ResumeAsync (Context.Guild.Id));
 
         [Command ("lyrics")]
+        [Summary ("Gets the lyrics for the currently playing song")]
+        public async Task GetCurrentLyricsAsync () => await ReplyAsync (await _musicService.GetCurrentLyricsAsync (Context.Guild.Id));
+
+        [Command ("lyrics")]
         [Summary ("Gets the lyrics for the specified song")]
-        public async Task LyricsAsync ([Remainder] string title) {
+        public async Task GetLyricsAsync ([Remainder] string title) {
             string json = new WebClient ().DownloadString ("https://some-random-api.ml/lyrics?title=" + title);
             JsonService.Lyrics.Json obj = JsonService.Lyrics.Json.FromJson (json);
 
+            /*
             EmbedBuilder builder = new EmbedBuilder ();
 
             builder.WithTitle (obj.Title);
@@ -82,6 +87,7 @@ namespace IvyBot.Modules {
             builder.WithCurrentTimestamp ();
             builder.WithFooter ("Coded and maintained by Ivy#9804 in Discord.Net");
             builder.WithColor (Color.Blue);
+            */
 
             var splitLyrics = obj.Lyrics.Split ('\n');
             var stringBuilder = new StringBuilder ();
@@ -95,7 +101,7 @@ namespace IvyBot.Modules {
                 }
             }
 
-            await Context.User.SendMessageAsync (null, false, builder.Build ());
+            // await Context.User.SendMessageAsync (null, false, builder.Build ());
             await ReplyAsync ($"```{stringBuilder}```", true);
         }
     }

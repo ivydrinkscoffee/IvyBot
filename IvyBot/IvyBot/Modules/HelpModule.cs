@@ -47,7 +47,7 @@ namespace IvyBot.Modules {
             await ReplyAsync ("", false, builder.Build ());
         }
 
-        [Command ("cmd")]
+        [Command ("command")]
         [Summary ("Search for help on a specific command")]
         public async Task SearchCommandAsync ([Remainder] string command) {
             var result = _service.Search (Context, command);
