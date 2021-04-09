@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -20,17 +21,23 @@ namespace IvyBot.Modules {
         [Command ("asm")]
         [Summary ("Converts ARM64 assembly code to hex code")]
         public async Task AssembleAsync ([Remainder] string assembly) {
-            string hex = Assembler.Assemble (assembly);
-
-            await ReplyAsync (hex);
+            try {
+                string hex = Assembler.Assemble (assembly);
+                await ReplyAsync (hex);
+            } catch (InvalidOperationException ex) {
+                await ReplyAsync (ex.Message);
+            }
         }
 
         [Command ("disasm")]
         [Summary ("Converts ARM64 hex code to assembly code")]
         public async Task DisassembleAsync ([Remainder] string hex) {
-            string asm = Disassembler.Disassemble (hex);
-
-            await ReplyAsync ($"```armasm\n{asm}\n```");
+            try {
+                string asm = Disassembler.Disassemble (hex);
+                await ReplyAsync ($"```armasm\n{asm}\n```");
+            } catch (WebException ex) {
+                await ReplyAsync (ex.Message);
+            }
         }
 
         [Command ("pchtxt")]
