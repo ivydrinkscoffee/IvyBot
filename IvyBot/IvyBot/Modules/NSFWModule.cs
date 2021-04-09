@@ -18,7 +18,7 @@ namespace IvyBot.Modules {
         public async Task E621Async ([Remainder] string tag) {
             var link = await NSFWService.GetE621File (tag);
 
-            while (link.Contains ("preview") == false) {
+            while (link.Contains ("preview") == true) {
                 link = await NSFWService.GetE621File (tag);
                 await ReplyAsync (link);
                 break;
