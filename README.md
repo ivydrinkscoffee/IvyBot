@@ -10,7 +10,7 @@ Clone the repository with `git clone https://github.com/ivydrinkscoffee/IvyBot.g
 <?xml version="1.0" encoding="utf-8"?>  
 <configuration>  
     <startup>  
-        <supportedRuntime version="v4.0" sku="netcoreapp2.1" />  
+        <supportedRuntime version="v4.0" sku="net5.0" />  
     </startup>  
   <appSettings>  
     <add key="Token" value="replace with your bot token" />  
@@ -23,7 +23,7 @@ Clone the repository with `git clone https://github.com/ivydrinkscoffee/IvyBot.g
 ```
 Remember that if you are running your **Lavalink** instance on [Heroku](https://www.heroku.com) the port will always be **80** regardless of the port you set
 # Future plans
-More modules/commands and [Migrate To Latest .NET SDK And Dependencies](https://github.com/Ivy-Wusky/ivy-bot/projects/1)
+Cleaning up the rest of `MusicService` but nothing big at the moment, feel free to suggest any ideas!
 # Credits
 [Discord.Net](https://github.com/discord-net/Discord.Net)
 
