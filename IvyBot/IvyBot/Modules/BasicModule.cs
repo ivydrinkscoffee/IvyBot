@@ -56,7 +56,7 @@ namespace IvyBot.Modules {
         [Command ("ping")]
         [Summary ("Returns the bot's latency")]
         public async Task PingAsync () {
-            await ReplyAsync (Context.Client.Latency.ToString ());
+            await ReplyAsync ($"{Context.Client.Latency}ms");
         }
     }
 }
