@@ -22,9 +22,9 @@ namespace IvyBot.Modules {
         [Summary ("Converts ARM64 assembly code to hex code")]
         public async Task AssembleAsync ([Remainder] string assembly) {
             try {
-                string hex = Assembler.Assemble (assembly);
+                string hex = await Assembler.AssembleAsync(assembly);
                 await ReplyAsync (hex);
-            } catch (InvalidOperationException ex) {
+            } catch (FormatException ex) {
                 await ReplyAsync (ex.Message);
             }
         }
@@ -33,10 +33,10 @@ namespace IvyBot.Modules {
         [Summary ("Converts ARM64 hex code to assembly code")]
         public async Task DisassembleAsync ([Remainder] string hex) {
             try {
-                string asm = Disassembler.Disassemble (hex);
+                string asm = await Disassembler.DisassembleAsync (hex);
                 await ReplyAsync ($"```armasm\n{asm}\n```");
-            } catch (WebException ex) {
-                await ReplyAsync (ex.Message);
+            } catch (WebException) {
+                await ReplyAsync ("Invalid hex code");
             }
         }
 

@@ -74,8 +74,7 @@ namespace IvyBot {
             .AddSingleton (_cmdService)
             .AddSingleton (_logService)
             .AddSingleton (_config)
-            .AddSingleton<LavaNode> ()
-            .AddSingleton<LavaConfig> ()
+            .AddLavaNode()
             .AddSingleton<MusicService> ()
             .AddSingleton<ConfigurationManager> ()
             .BuildServiceProvider ();

@@ -7,19 +7,19 @@ Can be built on Windows, Linux, and macOS using the [.NET 5 SDK](https://dotnet.
 # Running and hosting
 Clone the repository with `git clone https://github.com/ivydrinkscoffee/IvyBot.git` then rename **App.config.example** to **App.config** and edit it accordingly to your **Discord** and **Lavalink** environment
 ```xml
-<?xml version="1.0" encoding="utf-8"?>  
-<configuration>  
-    <startup>  
-        <supportedRuntime version="v4.0" sku="net5.0" />  
-    </startup>  
-  <appSettings>  
-    <add key="Token" value="replace with your bot token" />  
-    <add key="Prefix" value="replace with a prefix of your choice" />  
-    <add key="Host" value="replace with the set lavalink address" />  
-    <add key="Port" value="replace with the set lavalink port" />  
-    <add key="Password" value="replace with the set lavalink password" />  
-  </appSettings>  
-</configuration>  
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <startup>
+        <supportedRuntime version="v4.0" sku="net5.0" />
+    </startup>
+  <appSettings>
+    <add key="Token" value="replace with your bot token" />
+    <add key="Prefix" value="replace with a prefix of your choice" />
+    <add key="Host" value="replace with the set lavalink address" />
+    <add key="Port" value="replace with the set lavalink port" />
+    <add key="Password" value="replace with the set lavalink password" />
+  </appSettings>
+</configuration>
 ```
 Remember that if you are running your **Lavalink** instance on [Heroku](https://www.heroku.com) the port will always be **80** regardless of the port you set
 # Future plans

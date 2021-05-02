@@ -16,10 +16,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="Victoria" Version="5.1.11" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ArmConverter">
-      <HintPath>ArmConverter/ArmConverter.dll</HintPath>
-    </Reference>
+    <PackageReference Include="ArmConverter" Version="1.0.0" />
   </ItemGroup>
 </Project>
