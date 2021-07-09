@@ -34,5 +34,3 @@ Cleaning up the rest of `MusicService` but nothing big at the moment, feel free 
 [Lavalink](https://github.com/Frederikam/Lavalink)
 
 [some random api](https://some-random-api.ml)
-# Support
-**Contact** me on my [Discord server](https://discord.gg/svMC3dt) for further help
