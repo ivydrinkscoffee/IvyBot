@@ -15,7 +15,7 @@
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-    <PackageReference Include="Victoria" Version="5.1.11" />
+    <PackageReference Include="Victoria" Version="5.2.5" />
     <PackageReference Include="ArmConverter" Version="1.0.0" />
   </ItemGroup>
 </Project>
