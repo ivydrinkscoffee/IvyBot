@@ -26,7 +26,7 @@ jobs:
     - name: Publish
       run: dotnet publish IvyBot/IvyBot/IvyBot.csproj
     - name: Upload build artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: IvyBot
         path: /home/runner/work/IvyBot/IvyBot/IvyBot/IvyBot/bin/Debug/net5.0/publish/
